@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Предпросмотр палатки Вкл/Выкл",
+  "tentbag:clear-area-error": "Нельзя распаковать здесь, требуется свободное место!",
+  "tentbag:empty-build-error": "В области постройки нет твёрдых блоков!",
+  "tentbag:illegal-item-error": "Нельзя упаковать {0} в сумку!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Защита:</font> Собрать палатку можно лишь нажав на пол!",
+  "tentbag:pack-hunger-error": "Я слишком голоден, чтобы сейчас упаковать это!",
+  "tentbag:pack-success": "Упаковано блоков: {0}, потрачено сытости: {1}.",
+  "tentbag:preview-toggled": "Предпросмотр палатки: {0}",
+  "tentbag:solid-ground-error": "Нельзя распаковать здесь, нужна твёрдая поверхность!",
+  "tentbag:status-off": "Выкл",
+  "tentbag:status-on": "Вкл",
+  "tentbag:unpack-error": "Не удалось распаковать: внутренняя ошибка при чтении сохранённых данных!",
+  "tentbag:unpack-hunger-error": "Я слишком голоден, чтобы сейчас распаковать это!",
+  "tentbag:unpack-success": "Распаковано блоков: {0}, потрачено сытости: {1}.",
+  "tentbag:waypoint-title": "Палатка {0}",
+  "tentbag:wp-remove-error": "Не удалось удалить метку.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Пустая сумка для палатки",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Упакованная сумка для палатки",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Совершенно пустая сумка для палатки. Нужно что-нибудь в неё упаковать.\n\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, чтобы отключить голограмму</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Упакованная сумка для палатки, готовая к вашим приключениям!\n\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, чтобы отключить голограмму</font>"
+}

@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Zeltvorschau Ein/Aus",
+  "tentbag:clear-area-error": "Hier kann nicht ausgepackt werden, es wird freier Platz benötigt!",
+  "tentbag:empty-build-error": "Im Baubereich befinden sich keine festen Blöcke!",
+  "tentbag:illegal-item-error": "{0} kann nicht in die Tasche gepackt werden!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Schutz:</font> Das Zelt kann nur durch Klicken auf den Boden eingepackt werden!",
+  "tentbag:pack-hunger-error": "Ich bin zu hungrig, um das jetzt einzupacken!",
+  "tentbag:pack-success": "Blöcke eingepackt: {0}, Sättigung verbraucht: {1}.",
+  "tentbag:preview-toggled": "Zeltvorschau: {0}",
+  "tentbag:solid-ground-error": "Hier kann nicht ausgepackt werden, fester Untergrund erforderlich!",
+  "tentbag:status-off": "Aus",
+  "tentbag:status-on": "Ein",
+  "tentbag:unpack-error": "Auspacken fehlgeschlagen: Interner Fehler beim Lesen der gespeicherten Daten!",
+  "tentbag:unpack-hunger-error": "Ich bin zu hungrig, um das jetzt auszupacken!",
+  "tentbag:unpack-success": "Blöcke ausgepackt: {0}, Sättigung verbraucht: {1}.",
+  "tentbag:waypoint-title": "Zelt {0}",
+  "tentbag:wp-remove-error": "Markierung konnte nicht entfernt werden.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Leere Zelttasche",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Gepackte Zelttasche",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Völlig leere Zelttasche. Du musst zuerst etwas hineinpacken.\n\n<font color=\"#55ff55\">Drücke </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, um das Hologramm auszublenden</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Gepackte Zelttasche, bereit für deine Abenteuer!\n\n<font color=\"#55ff55\">Drücke </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, um das Hologramm auszublenden</font>"
+}

@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Tent Preview On/Off",
+  "tentbag:clear-area-error": "Cannot unpack here, a clear area is required!",
+  "tentbag:empty-build-error": "There are no solid blocks in the build area!",
+  "tentbag:illegal-item-error": "Cannot pack {0} into the bag!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protection:</font> The tent can only be packed by clicking on the ground!",
+  "tentbag:pack-hunger-error": "I'm too hungry to pack this right now!",
+  "tentbag:pack-success": "Packed blocks: {0}, satiety consumed: {1}.",
+  "tentbag:preview-toggled": "Tent preview: {0}",
+  "tentbag:solid-ground-error": "Cannot unpack here, solid ground is required!",
+  "tentbag:status-off": "Off",
+  "tentbag:status-on": "On",
+  "tentbag:unpack-error": "Failed to unpack: Internal error while reading saved data!",
+  "tentbag:unpack-hunger-error": "I'm too hungry to unpack this right now!",
+  "tentbag:unpack-success": "Unpacked blocks: {0}, satiety consumed: {1}.",
+  "tentbag:waypoint-title": "Tent {0}",
+  "tentbag:wp-remove-error": "Failed to remove waypoint.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Empty Tent Bag",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Packed Tent Bag",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You'll need to pack something into it first.\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>"
+}

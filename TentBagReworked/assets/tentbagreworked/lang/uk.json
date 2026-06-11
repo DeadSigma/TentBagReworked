@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Попередній перегляд намету Увімк/Вимк",
+  "tentbag:clear-area-error": "Не можна розпакувати тут, потрібен вільний простір!",
+  "tentbag:empty-build-error": "У зоні будівництва немає твердих блоків!",
+  "tentbag:illegal-item-error": "Не можна запакувати {0} у сумку!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Захист:</font> Зібрати намет можна лише натиснувши на підлогу!",
+  "tentbag:pack-hunger-error": "Я надто голодний, щоб зараз це запакувати!",
+  "tentbag:pack-success": "Запаковано блоків: {0}, витрачено ситості: {1}.",
+  "tentbag:preview-toggled": "Попередній перегляд намету: {0}",
+  "tentbag:solid-ground-error": "Не можна розпакувати тут, потрібна тверда поверхня!",
+  "tentbag:status-off": "Вимк.",
+  "tentbag:status-on": "Увімк.",
+  "tentbag:unpack-error": "Не вдалося розпакувати: внутрішня помилка під час читання збережених даних!",
+  "tentbag:unpack-hunger-error": "Я надто голодний, щоб зараз це розпакувати!",
+  "tentbag:unpack-success": "Розпаковано блоків: {0}, витрачено ситості: {1}.",
+  "tentbag:waypoint-title": "Намет {0}",
+  "tentbag:wp-remove-error": "Не вдалося видалити мітку.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Порожня сумка для намету",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Запакована сумка для намету",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Спочатку потрібно щось у неї запакувати.\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>"
+}

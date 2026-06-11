@@ -1,0 +1,288 @@
+[
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-plain", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-plain-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-black", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-black-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-blue", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-blue-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-brown", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-brown-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-gray", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-gray-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-green", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-green-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-mordant", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-mordant-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-orange", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-orange-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-pink", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-pink-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-purple", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-purple-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-red", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-red-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-white", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-white-empty" }
+  },
+  {
+    "ingredientPattern": "RSR,SCS,RSR",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-yellow", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-yellow-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-plain", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-plain-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-black", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-black-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-blue", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-blue-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-brown", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-brown-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-gray", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-gray-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-green", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-green-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-mordant", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-mordant-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-orange", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-orange-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-pink", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-pink-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-purple", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-purple-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-red", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-red-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-white", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-white-empty" }
+  },
+  {
+    "ingredientPattern": "SRS,RCR,SRS",
+    "ingredients": {
+      "C": { "type": "item", "code": "game:cloth-yellow", "quantity": 1 },
+      "R": { "type": "item", "code": "game:rope", "quantity": 1 },
+      "S": { "type": "item", "code": "game:stick", "quantity": 1 }
+    },
+    "width": 3,
+    "height": 3,
+    "output": { "type": "item", "code": "tentbagreworked:tentbagreworked-yellow-empty" }
+  }
+]

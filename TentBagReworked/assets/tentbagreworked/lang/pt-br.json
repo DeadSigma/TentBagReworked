@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Pré-visualização da barraca Lig/Desl",
+  "tentbag:clear-area-error": "Não é possível desempacotar aqui, é necessário espaço livre!",
+  "tentbag:empty-build-error": "Não há blocos sólidos na área de construção!",
+  "tentbag:illegal-item-error": "Não é possível guardar {0} na bolsa!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Proteção:</font> A barraca só pode ser recolhida clicando no chão!",
+  "tentbag:pack-hunger-error": "Estou com muita fome para empacotar isso agora!",
+  "tentbag:pack-success": "Blocos empacotados: {0}, saciedade consumida: {1}.",
+  "tentbag:preview-toggled": "Pré-visualização da barraca: {0}",
+  "tentbag:solid-ground-error": "Não é possível desempacotar aqui, é necessário um solo firme!",
+  "tentbag:status-off": "Desligado",
+  "tentbag:status-on": "Ligado",
+  "tentbag:unpack-error": "Falha ao desempacotar: erro interno ao ler os dados salvos!",
+  "tentbag:unpack-hunger-error": "Estou com muita fome para desempacotar isso agora!",
+  "tentbag:unpack-success": "Blocos desempacotados: {0}, saciedade consumida: {1}.",
+  "tentbag:waypoint-title": "Barraca {0}",
+  "tentbag:wp-remove-error": "Falha ao remover o marcador.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Bolsa de barraca vazia",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Bolsa de barraca empacotada",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Uma bolsa de barraca completamente vazia. Você precisa colocar algo nela primeiro.\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Uma bolsa de barraca pronta e empacotada para suas aventuras!\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>"
+}

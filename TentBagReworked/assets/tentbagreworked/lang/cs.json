@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Náhled stanu Zap/Vyp",
+  "tentbag:clear-area-error": "Zde nelze rozbalit, je potřeba volný prostor!",
+  "tentbag:empty-build-error": "V oblasti stavby nejsou žádné pevné bloky!",
+  "tentbag:illegal-item-error": "Nelze zabalit {0} do tašky!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Ochrana:</font> Stan lze sbalit pouze kliknutím na podlahu!",
+  "tentbag:pack-hunger-error": "Jsem příliš hladový, než abych to teď zabalil!",
+  "tentbag:pack-success": "Sbaleno bloků: {0}, spotřebováno sytosti: {1}.",
+  "tentbag:preview-toggled": "Náhled stanu: {0}",
+  "tentbag:solid-ground-error": "Zde nelze rozbalit, je vyžadován pevný povrch!",
+  "tentbag:status-off": "Vyp",
+  "tentbag:status-on": "Zap",
+  "tentbag:unpack-error": "Nepodařilo se rozbalit: interní chyba při čtení uložených dat!",
+  "tentbag:unpack-hunger-error": "Jsem příliš hladový, než abych to teď rozbalil!",
+  "tentbag:unpack-success": "Rozbaleno bloků: {0}, spotřebováno sytosti: {1}.",
+  "tentbag:waypoint-title": "Stan {0}",
+  "tentbag:wp-remove-error": "Nepodařilo se odstranit značku.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Prázdná taška na stan",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Sbalená taška na stan",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Zcela prázdná taška na stan. Nejprve do ní musíte něco zabalit.\n\n<font color=\"#55ff55\">Stiskněte </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pro vypnutí hologramu</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Sbalená taška se stanem, připravená na vaše dobrodružství!\n\n<font color=\"#55ff55\">Stiskněte </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pro vypnutí hologramu</font>"
+}

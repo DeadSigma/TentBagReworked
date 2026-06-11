@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Previzualizare cort Pornit/Oprit",
+  "tentbag:clear-area-error": "Nu se poate despacheta aici, este necesar spațiu liber!",
+  "tentbag:empty-build-error": "Nu există blocuri solide în zona de construcție!",
+  "tentbag:illegal-item-error": "Nu se poate împacheta {0} în geantă!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protecție:</font> Cortul poate fi strâns doar făcând clic pe sol!",
+  "tentbag:pack-hunger-error": "Mi-e prea foame ca să împachetez asta acum!",
+  "tentbag:pack-success": "Blocuri împachetate: {0}, sațietate consumată: {1}.",
+  "tentbag:preview-toggled": "Previzualizare cort: {0}",
+  "tentbag:solid-ground-error": "Nu se poate despacheta aici, este necesară o suprafață solidă!",
+  "tentbag:status-off": "Oprit",
+  "tentbag:status-on": "Pornit",
+  "tentbag:unpack-error": "Despachetarea a eșuat: eroare internă la citirea datelor salvate!",
+  "tentbag:unpack-hunger-error": "Mi-e prea foame ca să despachetez asta acum!",
+  "tentbag:unpack-success": "Blocuri despachetate: {0}, sațietate consumată: {1}.",
+  "tentbag:waypoint-title": "Cort {0}",
+  "tentbag:wp-remove-error": "Marcajul nu a putut fi eliminat.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Geantă de cort goală",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Geantă de cort împachetată",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "O geantă de cort complet goală. Mai întâi trebuie să împachetezi ceva în ea.\n\n<font color=\"#55ff55\">Apasă </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pentru a dezactiva holograma</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "O geantă de cort împachetată, gata pentru aventurile tale!\n\n<font color=\"#55ff55\">Apasă </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pentru a dezactiva holograma</font>"
+}

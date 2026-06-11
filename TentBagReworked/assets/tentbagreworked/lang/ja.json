@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: テントプレビュー オン/オフ",
+  "tentbag:clear-area-error": "ここでは展開できません。十分な空きスペースが必要です！",
+  "tentbag:empty-build-error": "建築エリア内に固体ブロックがありません！",
+  "tentbag:illegal-item-error": "{0} をバッグに収納できません！",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">保護:</font> テントは地面をクリックした場合のみ回収できます！",
+  "tentbag:pack-hunger-error": "空腹すぎて今は収納できません！",
+  "tentbag:pack-success": "収納したブロック数: {0}、消費した満腹度: {1}。",
+  "tentbag:preview-toggled": "テントプレビュー: {0}",
+  "tentbag:solid-ground-error": "ここでは展開できません。固い地面が必要です！",
+  "tentbag:status-off": "オフ",
+  "tentbag:status-on": "オン",
+  "tentbag:unpack-error": "展開に失敗しました: 保存データの読み込み中に内部エラーが発生しました！",
+  "tentbag:unpack-hunger-error": "空腹すぎて今は展開できません！",
+  "tentbag:unpack-success": "展開したブロック数: {0}、消費した満腹度: {1}。",
+  "tentbag:waypoint-title": "テント {0}",
+  "tentbag:wp-remove-error": "マーカーを削除できませんでした。",
+  "tentbagreworked:item-tentbagreworked-*-empty": "空のテントバッグ",
+  "tentbagreworked:item-tentbagreworked-*-packed": "梱包済みテントバッグ",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全に空のテントバッグです。まず何かを詰める必要があります。\n\n<font color=\"#55ff55\"> </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> キーを押してホログラムを無効化</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "梱包済みのテントバッグです。冒険の準備は万端！\n\n<font color=\"#55ff55\"> </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> キーを押してホログラムを無効化</font>"
+}

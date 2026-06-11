@@ -1,0 +1,90 @@
+{
+  "code": "tentbagreworked",
+  "class": "tentbagreworked.itemtentbag",
+  "maxstacksize": 1,
+  "variantgroups": [
+    { "code": "color", "states": [ "plain", "black", "blue", "brown", "gray", "green", "mordant", "orange", "pink", "purple", "red", "white", "yellow" ] },
+    { "code": "type", "states": [ "empty", "packed" ] }
+  ],
+  "behaviors": [
+    { "name": "tentbagreworked.packable" }
+  ],
+  "shape": { "base": "item/tentbag-reworked" },
+  "texturesByType": {
+    "*-plain-*": {
+      "linen": { "base": "game:block/cloth/linen/plain" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-black-*": {
+      "linen": { "base": "game:block/cloth/linen/black" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-blue-*": {
+      "linen": { "base": "game:block/cloth/linen/blue" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-brown-*": {
+      "linen": { "base": "game:block/cloth/linen/brown" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-gray-*": {
+      "linen": { "base": "game:block/cloth/linen/gray" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-green-*": {
+      "linen": { "base": "game:block/cloth/linen/green" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-mordant-*": {
+      "linen": { "base": "game:block/cloth/linen/mordant" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-orange-*": {
+      "linen": { "base": "game:block/cloth/linen/orange" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-pink-*": {
+      "linen": { "base": "game:block/cloth/linen/pink" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-purple-*": {
+      "linen": { "base": "game:block/cloth/linen/purple" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-red-*": {
+      "linen": { "base": "game:block/cloth/linen/red" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-white-*": {
+      "linen": { "base": "game:block/cloth/linen/white" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    },
+    "*-yellow-*": {
+      "linen": { "base": "game:block/cloth/linen/yellow" },
+      "linen_brown": { "base": "game:block/cloth/linen/brown" }
+    }
+  },
+  "creativeinventory": { "general": [ "*-empty" ], "items": [ "*-empty" ], "tentbagreworked":  [ "*-empty" ] },
+  "guiTransform": {
+	  "translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": -30, "y": -44, "z": 180 },
+		"origin": { "x": 0.55, "y": 0.25, "z": 0.5 },
+		"scale": 1.45
+	},
+  "fpHandTransform": {
+    "translation": { "x": 0, "y": 0, "z": 0.2 },
+    "rotation": { "x": 47, "y": -80, "z": 33 },
+    "scale": 1.61
+  },
+  "tpHandTransform": {
+		"translation": { "x": -0.69, "y": -0.7, "z": -0.7 },
+		"rotation": { "x": -4, "y": 90, "z": -17 },
+		"scale": 0.75
+	},
+  "groundTransform": {
+    "translation": { "x": 0, "y": 0, "z": 0 },
+    "rotation": { "x": 180, "y": 40, "z": -180 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 4
+  }
+}

@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked：帐篷预览 开/关",
+  "tentbag:clear-area-error": "无法在此展开，需要足够的空闲空间！",
+  "tentbag:empty-build-error": "建筑区域内没有坚固方块！",
+  "tentbag:illegal-item-error": "无法将 {0} 打包进袋子！",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">保护：</font>只能点击地面来收起帐篷！",
+  "tentbag:pack-hunger-error": "我太饿了，现在无法打包它！",
+  "tentbag:pack-success": "已打包方块：{0}，消耗饱食度：{1}。",
+  "tentbag:preview-toggled": "帐篷预览：{0}",
+  "tentbag:solid-ground-error": "无法在此展开，需要坚实地面！",
+  "tentbag:status-off": "关闭",
+  "tentbag:status-on": "开启",
+  "tentbag:unpack-error": "展开失败：读取保存数据时发生内部错误！",
+  "tentbag:unpack-hunger-error": "我太饿了，现在无法展开它！",
+  "tentbag:unpack-success": "已展开方块：{0}，消耗饱食度：{1}。",
+  "tentbag:waypoint-title": "帐篷 {0}",
+  "tentbag:wp-remove-error": "无法删除标记。",
+  "tentbagreworked:item-tentbagreworked-*-empty": "空帐篷袋",
+  "tentbagreworked:item-tentbagreworked-*-packed": "已打包帐篷袋",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全空的帐篷包。需要先往里面装点东西。\n\n<font color=\"#55ff55\">按下 </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> 以关闭全息投影</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "已打包好的帐篷包，随时准备开启你的冒险！\n\n<font color=\"#55ff55\">按下 </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> 以关闭全息投影</font>"
+}

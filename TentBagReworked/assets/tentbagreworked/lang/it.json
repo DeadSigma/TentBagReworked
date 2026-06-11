@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Anteprima tenda On/Off",
+  "tentbag:clear-area-error": "Impossibile aprire qui, è necessario uno spazio libero!",
+  "tentbag:empty-build-error": "Non ci sono blocchi solidi nell'area di costruzione!",
+  "tentbag:illegal-item-error": "Impossibile riporre {0} nella borsa!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protezione:</font> La tenda può essere raccolta solo cliccando sul terreno!",
+  "tentbag:pack-hunger-error": "Sono troppo affamato per impacchettarlo adesso!",
+  "tentbag:pack-success": "Blocchi impacchettati: {0}, sazietà consumata: {1}.",
+  "tentbag:preview-toggled": "Anteprima tenda: {0}",
+  "tentbag:solid-ground-error": "Impossibile aprire qui, è necessaria una superficie solida!",
+  "tentbag:status-off": "Disattivo",
+  "tentbag:status-on": "Attivo",
+  "tentbag:unpack-error": "Impossibile aprire: errore interno durante la lettura dei dati salvati!",
+  "tentbag:unpack-hunger-error": "Sono troppo affamato per aprirlo adesso!",
+  "tentbag:unpack-success": "Blocchi estratti: {0}, sazietà consumata: {1}.",
+  "tentbag:waypoint-title": "Tenda {0}",
+  "tentbag:wp-remove-error": "Impossibile rimuovere il segnalino.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Borsa per tenda vuota",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Borsa per tenda impacchettata",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una borsa per tenda completamente vuota. Devi prima metterci qualcosa dentro.\n\n<font color=\"#55ff55\">Premi </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> per disattivare l'ologramma</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una borsa per tenda già pronta e confezionata, pronta per le tue avventure!\n\n<font color=\"#55ff55\">Premi </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> per disattivare l'ologramma</font>"
+}

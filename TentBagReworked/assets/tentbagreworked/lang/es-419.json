@@ -1,0 +1,23 @@
+﻿{
+  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "hotkey-toggle-preview": "TentBag Reworked: Vista previa de la tienda Act/Desact",
+  "tentbag:clear-area-error": "¡No se puede desplegar aquí, se necesita espacio libre!",
+  "tentbag:empty-build-error": "¡No hay bloques sólidos en el área de construcción!",
+  "tentbag:illegal-item-error": "¡No se puede guardar {0} en la bolsa!",
+  "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protección:</font> ¡La tienda solo puede recogerse haciendo clic en el suelo!",
+  "tentbag:pack-hunger-error": "¡Estoy demasiado hambriento para guardar esto ahora!",
+  "tentbag:pack-success": "Bloques empaquetados: {0}, saciedad consumida: {1}.",
+  "tentbag:preview-toggled": "Vista previa de la tienda: {0}",
+  "tentbag:solid-ground-error": "¡No se puede desplegar aquí, se necesita una superficie sólida!",
+  "tentbag:status-off": "Desactivado",
+  "tentbag:status-on": "Activado",
+  "tentbag:unpack-error": "No se pudo desplegar: ¡error interno al leer los datos guardados!",
+  "tentbag:unpack-hunger-error": "¡Estoy demasiado hambriento para desplegar esto ahora!",
+  "tentbag:unpack-success": "Bloques desplegados: {0}, saciedad consumida: {1}.",
+  "tentbag:waypoint-title": "Tienda {0}",
+  "tentbag:wp-remove-error": "No se pudo eliminar la marca.",
+  "tentbagreworked:item-tentbagreworked-*-empty": "Bolsa de tienda vacía",
+  "tentbagreworked:item-tentbagreworked-*-packed": "Bolsa de tienda empaquetada",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una bolsa de tienda completamente vacía. Primero necesitas guardar algo dentro.\n\n<font color=\"#55ff55\">Pulsa </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desactivar el holograma</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una bolsa de tienda empaquetada, ¡lista para tus aventuras!\n\n<font color=\"#55ff55\">Pulsa </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desactivar el holograma</font>"
+}
