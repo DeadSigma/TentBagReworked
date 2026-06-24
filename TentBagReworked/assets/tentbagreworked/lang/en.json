@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked: Tent Preview On/Off",
   "tentbag:clear-area-error": "Cannot unpack here, a clear area is required!",
   "tentbag:empty-build-error": "There are no solid blocks in the build area!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Tent Grab Area Highlight On/Off",
   "tentbag:illegal-item-error": "Cannot pack {0} into the bag!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protection:</font> The tent can only be packed by clicking on the ground!",
   "tentbag:pack-hunger-error": "I'm too hungry to pack this right now!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Failed to remove waypoint.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Empty Tent Bag",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packed Tent Bag",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You'll need to pack something into it first.\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You need to pack something into it.\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> to enable the preview of the captured area</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>"
 }

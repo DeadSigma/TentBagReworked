@@ -17,4 +17,5 @@ public abstract class Lang {
     public static string StatusOff(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:status-off");
     public static string PreviewToggled(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:preview-toggled", args);
     public static string HotkeyTogglePreview(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-toggle-preview");
+    public static string HotkeyHighlightGrabArea(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-highlight-grab-area");
 }

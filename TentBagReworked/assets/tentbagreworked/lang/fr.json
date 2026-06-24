@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked : Aperçu de la tente Act/Désact",
   "tentbag:clear-area-error": "Impossible de déballer ici, un espace libre est requis !",
   "tentbag:empty-build-error": "Aucun bloc solide dans la zone de construction !",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked : Surlignage de la zone de capture de la tente Act/Désact",
   "tentbag:illegal-item-error": "Impossible de ranger {0} dans le sac !",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protection :</font> La tente ne peut être rangée qu'en cliquant sur le sol !",
   "tentbag:pack-hunger-error": "Je suis trop affamé pour emballer cela maintenant !",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Impossible de supprimer le marqueur.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Sac de tente vide",
   "tentbagreworked:item-tentbagreworked-*-packed": "Sac de tente emballé",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Sac de tente complètement vide. Vous devez d'abord y ranger quelque chose.\n\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pour désactiver l’hologramme</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Un sac de tente complètement vide. Vous devez y ranger quelque chose.\n\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pour désactiver l'hologramme</font>\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> pour activer l'aperçu de la zone capturée</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Sac de tente emballé, prêt pour vos aventures !\n\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pour désactiver l’hologramme</font>"
 }

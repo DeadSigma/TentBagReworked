@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked: Pré-visualização da barraca Lig/Desl",
   "tentbag:clear-area-error": "Não é possível desempacotar aqui, é necessário espaço livre!",
   "tentbag:empty-build-error": "Não há blocos sólidos na área de construção!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Realce da área de captura da barraca Lig/Desl",
   "tentbag:illegal-item-error": "Não é possível guardar {0} na bolsa!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Proteção:</font> A barraca só pode ser recolhida clicando no chão!",
   "tentbag:pack-hunger-error": "Estou com muita fome para empacotar isso agora!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Falha ao remover o marcador.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Bolsa de barraca vazia",
   "tentbagreworked:item-tentbagreworked-*-packed": "Bolsa de barraca empacotada",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Uma bolsa de barraca completamente vazia. Você precisa colocar algo nela primeiro.\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Uma bolsa de barraca completamente vazia. Você precisa guardar algo nela.\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> para ativar a pré-visualização da área capturada</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Uma bolsa de barraca pronta e empacotada para suas aventuras!\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>"
 }

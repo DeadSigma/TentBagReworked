@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked: Podgląd namiotu Wł/Wył",
   "tentbag:clear-area-error": "Nie można rozpakować tutaj, wymagana jest wolna przestrzeń!",
   "tentbag:empty-build-error": "W obszarze budowy nie ma żadnych solidnych bloków!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Podświetlenie obszaru przechwytywania namiotu Wł/Wył",
   "tentbag:illegal-item-error": "Nie można spakować {0} do torby!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Ochrona:</font> Namiot można spakować tylko klikając w podłoże!",
   "tentbag:pack-hunger-error": "Jestem zbyt głodny, aby teraz to spakować!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Nie udało się usunąć znacznika.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Pusta torba na namiot",
   "tentbagreworked:item-tentbagreworked-*-packed": "Spakowana torba na namiot",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Całkowicie pusta torba na namiot. Najpierw musisz coś do niej spakować.\n\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, aby wyłączyć hologram</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Całkowicie pusta torba na namiot. Musisz coś do niej spakować.\n\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, aby wyłączyć hologram</font>\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, aby włączyć podgląd przechwytywanego obszaru</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Spakowana torba na namiot, gotowa na twoje przygody!\n\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, aby wyłączyć hologram</font>"
 }

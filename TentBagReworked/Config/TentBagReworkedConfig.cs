@@ -2,8 +2,9 @@ using System.ComponentModel;
 
 namespace TentBagReworked.Config;
 
-public class TentBagReworkedConfig {
-    
+public class TentBagReworkedConfig
+{
+
     /// <summary>
     /// Maximum allowable radius for tent build
     /// </summary>
@@ -14,7 +15,7 @@ public class TentBagReworkedConfig {
     /// </summary>
     public int MaxHeight { get; set; } = 7;
 
-    
+
     /// <summary>
     /// Build Effort is calculated per solid block, so a 3x3x7 tent would have a maximum possible BuildEffort of 3*3*3*7 = 189
     /// </summary>
@@ -49,6 +50,11 @@ public class TentBagReworkedConfig {
     /// Block error highlight color
     /// </summary>    
     public string HighlightErrorColor { get; set; } = "#2FFF0000";
+
+    /// <summary>
+    /// Highlight color for the grab/pickup area preview (toggled with the "Highlight tent grab area" hotkey)
+    /// </summary>
+    public string HighlightPickupColor { get; set; } = "#5000FF00";
 
     /// <summary>
     /// Adds a map waypoint at your build location after unpacking

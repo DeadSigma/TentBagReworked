@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked: Tältförhandsvisning På/Av",
   "tentbag:clear-area-error": "Kan inte packa upp här, ett fritt område krävs!",
   "tentbag:empty-build-error": "Det finns inga solida block i byggområdet!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Markering av tältets fångstområde På/Av",
   "tentbag:illegal-item-error": "Kan inte packa {0} i väskan!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Skydd:</font> Tältet kan endast packas ihop genom att klicka på marken!",
   "tentbag:pack-hunger-error": "Jag är för hungrig för att packa ner detta just nu!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Det gick inte att ta bort markeringen.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Tom tältväska",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packad tältväska",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du måste packa något i den först.\n\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> för att stänga av hologrammet</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du måste packa något i den.\n\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> för att stänga av hologrammet</font>\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> för att aktivera förhandsvisningen av det fångade området</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "En packad tältväska, redo för dina äventyr!\n\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> för att stänga av hologrammet</font>"
 }

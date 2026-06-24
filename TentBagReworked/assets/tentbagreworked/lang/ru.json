@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
-  "hotkey-toggle-preview": "TentBag Reworked: Предпросмотр палатки Вкл/Выкл",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "tentbag:clear-area-error": "Нельзя распаковать здесь, требуется свободное место!",
   "tentbag:empty-build-error": "В области постройки нет твёрдых блоков!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Подсветка области захвата палатки Вкл/Выкл",
+  "tentbag:hotkey-toggle-preview": "TentBag Reworked: Предпросмотр палатки Вкл/Выкл",
   "tentbag:illegal-item-error": "Нельзя упаковать {0} в сумку!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Защита:</font> Собрать палатку можно лишь нажав на пол!",
   "tentbag:pack-hunger-error": "Я слишком голоден, чтобы сейчас упаковать это!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Не удалось удалить метку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Пустая сумка для палатки",
   "tentbagreworked:item-tentbagreworked-*-packed": "Упакованная сумка для палатки",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Совершенно пустая сумка для палатки. Нужно что-нибудь в неё упаковать.\n\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, чтобы отключить голограмму</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Совершенно пустая сумка для палатки. Нужно что-нибудь в неё упаковать.\n\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, чтобы отключить голограмму</font>\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, чтобы включить предпросмотр захватываемой области</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Упакованная сумка для палатки, готовая к вашим приключениям!\n\n<font color=\"#55ff55\">Нажмите </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, чтобы отключить голограмму</font>"
 }

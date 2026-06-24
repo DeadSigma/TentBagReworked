@@ -6,6 +6,7 @@ using TentBagReworked.Behaviors;
 using TentBagReworked.Config;
 using TentBagReworked.Items;
 using TentBagReworked.Rendering;
+using TentBagReworked.Util;
 using TentBagReworked;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -13,6 +14,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 
 namespace TentBagReworked
@@ -50,6 +52,16 @@ namespace TentBagReworked
         private FileWatcher? _fileWatcher;
         private IServerNetworkChannel? _channel;
         private IClientNetworkChannel? _clientChannel;
+
+        // Клиентская подсветка зоны захвата (горячая клавиша).
+        // Отдельный id подсветки, чтобы не конфликтовать с подсветкой мешающих блоков (1337).
+        private const string GrabAreaHotkey = "tentbagreworked-showgraparea";
+        private const int GrabAreaHighlightId = 1338;
+        private bool _grabAreaShown;
+        private BlockPos? _lastGrabAreaPos;
+        // Запоминаем и грань тоже: цвет зависит от грани (верх -> можно собирать, иначе -> нельзя),
+        // а грань может смениться без смены блока (например, провести взглядом по одному блоку).
+        private BlockFacing? _lastGrabAreaFace;
 
         // Серверная часть предпросмотра (мини-измерения на игрока)
         private ICoreServerAPI? _sapi;
@@ -97,6 +109,84 @@ namespace TentBagReworked
                 })
                 .SetMessageHandler<ConfigSyncPacket>(OnConfigFromServer)
                 .SetMessageHandler<TentPreviewPacket>(OnPreviewFromServer);
+
+            // Горячая клавиша: показать/скрыть зону, которую заберёт пустой мешок
+            clientApi.Input.RegisterHotKey(GrabAreaHotkey, TentBagReworked.Config.Lang.HotkeyHighlightGrabArea(), GlKeys.P, HotkeyType.CharacterControls);
+            clientApi.Input.SetHotKeyHandler(GrabAreaHotkey, OnToggleGrabArea);
+
+            // Пока подсветка включена — обновляем каркас зоны за тем местом, куда смотрит игрок
+            clientApi.Event.RegisterGameTickListener(_ => { if (_grabAreaShown) UpdateGrabArea(); }, 150);
+        }
+
+        /// <summary>Клиент: переключить подсветку зоны захвата.</summary>
+        private bool OnToggleGrabArea(KeyCombination comb)
+        {
+            _grabAreaShown = !_grabAreaShown;
+            if (_grabAreaShown)
+            {
+                _lastGrabAreaPos = null; // заставить перерисовать немедленно
+                _lastGrabAreaFace = null;
+                UpdateGrabArea();
+            }
+            else
+            {
+                ClearGrabArea();
+            }
+
+            return true;
+        }
+
+        /// <summary>Клиент: нарисовать каркас зоны захвата на месте взгляда (только с пустым мешком в руке).</summary>
+        private void UpdateGrabArea()
+        {
+            IClientPlayer? player = clientApi?.World.Player;
+            BlockSelection? sel = player?.CurrentBlockSelection;
+            ItemStack? stack = player?.InventoryManager?.ActiveHotbarSlot?.Itemstack;
+
+            // Показываем только если в руке палаточный мешок и он ПУСТОЙ (готов к сбору)
+            bool isEmptyBag = stack?.Collectible?.CollectibleBehaviors?.Any(b => b is PackableBehavior) == true
+                              && stack.Attributes?.GetString("tent-contents") == null
+                              && stack.Attributes?.GetString("packed-contents") == null;
+
+            if (player == null || sel?.Position == null || !isEmptyBag)
+            {
+                if (_lastGrabAreaPos != null)
+                {
+                    ClearGrabArea();
+                }
+                return;
+            }
+
+            // Не перерисовываем, пока цель взгляда не изменилась (ни блок, ни грань)
+            if (sel.Position.Equals(_lastGrabAreaPos) && Equals(sel.Face, _lastGrabAreaFace))
+            {
+                return;
+            }
+            _lastGrabAreaPos = sel.Position.Copy();
+            _lastGrabAreaFace = sel.Face;
+
+            TentArea.GetPackBounds(EffectiveConfig, clientApi!.World.BlockAccessor, sel.Position, out BlockPos start, out BlockPos end);
+            List<BlockPos> edges = TentArea.GetCuboidEdges(start, end);
+
+            // Собирать палатку можно только по ВЕРХНЕЙ грани (по полу). Если игрок смотрит на стену
+            // или потолок — сбор запрещён, поэтому показываем зону КРАСНОЙ как предупреждение.
+            bool canPackHere = sel.Face == BlockFacing.UP;
+            string hex = canPackHere ? EffectiveConfig.HighlightPickupColor : EffectiveConfig.HighlightErrorColor;
+            int color = hex.ToColor().Reverse();
+            List<int> colors = Enumerable.Repeat(color, edges.Count).ToList();
+            clientApi.World.HighlightBlocks(player, GrabAreaHighlightId, edges, colors);
+        }
+
+        /// <summary>Клиент: убрать подсветку зоны захвата.</summary>
+        private void ClearGrabArea()
+        {
+            _lastGrabAreaPos = null;
+            _lastGrabAreaFace = null;
+            IClientPlayer? player = clientApi?.World.Player;
+            if (player != null)
+            {
+                clientApi!.World.HighlightBlocks(player, GrabAreaHighlightId, new List<BlockPos>());
+            }
         }
 
         public override void StartServerSide(ICoreServerAPI sapi)

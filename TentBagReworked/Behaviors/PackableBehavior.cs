@@ -41,6 +41,10 @@ public class PackableBehavior : CollectibleBehavior
     private readonly AssetLocation? _emptyBag;
     private readonly AssetLocation? _packedBag;
 
+    // Запас (в блоках) вокруг габаритов вставленной палатки, на который расширяется
+    // регион пересчёта света — чтобы свет от источников внутри корректно «вытек» наружу.
+    private const int RelightPadding = 16;
+
     private long _highlightId;
 
     // Добавляем обязательный метод инициализации, где берем корректный ModSystem для текущей стороны (сервер/клиент)
@@ -98,10 +102,9 @@ public class PackableBehavior : CollectibleBehavior
         IBlockAccessor blockAccessor = entity.World.BlockAccessor;
 
         int y = IsPlantOrRock(blockAccessor.GetBlock(blockSel.Position)) ? 1 : 0;
-        int floorShift = Config.GrabFloor ? -1 : 0;
 
-        BlockPos start = blockSel.Position.AddCopy(-Config.MaxRadius, 1 - y + floorShift, -Config.MaxRadius);
-        BlockPos end = blockSel.Position.AddCopy(Config.MaxRadius, Math.Max(Config.MaxHeight, 3), Config.MaxRadius);
+        // Единый расчёт зоны для сбора и для подсветки (TentArea), чтобы они не расходились.
+        TentArea.GetPackBounds(Config, blockAccessor, blockSel.Position, out BlockPos start, out BlockPos end);
 
         if (!CanPack(entity, blockAccessor, start, end, ref solidBlockCount))
         {
@@ -187,6 +190,44 @@ public class PackableBehavior : CollectibleBehavior
 
         // Do this after bulk accessor commit
         bs.PlaceEntitiesAndBlockEntities(blockAccessor, entity.World, adjustedStart, bs.BlockCodes, bs.ItemCodes);
+
+        // Багфикс освещения: источники света, расставленные
+        // Пересчёт запускаем только если в палатке реально есть светящиеся блоки, чтобы не
+        // нагружать сервер на каждой установке.
+        if (entity.Api is ICoreServerAPI sapi)
+        {
+            bool schematicHasLight = bs.BlockCodes.Values.Any(code =>
+            {
+                Block? b = entity.World.GetBlock(code);
+                // LightHsv — это структура ThreeBytes (как byte[3]): индексатор есть, но свойства .Length нет.
+                // Индекс 2 — яркость (Value в HSV); >0 означает, что блок светится.
+                return b != null && b.LightHsv[2] > 0;
+            });
+
+            if (schematicHasLight)
+            {
+                try
+                {
+                    int dim = adjustedStart.dimension;
+                    BlockPos relightMin = new(
+                        adjustedStart.X - RelightPadding,
+                        Math.Max(0, adjustedStart.Y - RelightPadding),
+                        adjustedStart.Z - RelightPadding,
+                        dim);
+                    BlockPos relightMax = new(
+                        adjustedStart.X + bs.SizeX - 1 + RelightPadding,
+                        adjustedStart.Y + bs.SizeY - 1 + RelightPadding,
+                        adjustedStart.Z + bs.SizeZ - 1 + RelightPadding,
+                        dim);
+
+                    sapi.WorldManager.FullRelight(relightMin, relightMax, true);
+                }
+                catch (Exception e)
+                {
+                    _modSystem.Logger.Warning("[TentBagReworked] Relight after unpack failed: " + e);
+                }
+            }
+        }
 
         // drop empty item on the ground and remove empty from inventory
         Item? emptyItem = entity.World.GetItem(_emptyBag);

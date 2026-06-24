@@ -1,8 +1,9 @@
 ﻿{
-  "game:tabname-tentbagreworkedreworked": "TentBag Reworked",
+  "game:tabname-tentbagreworked": "TentBag Reworked",
   "hotkey-toggle-preview": "TentBag Reworked: Попередній перегляд намету Увімк/Вимк",
   "tentbag:clear-area-error": "Не можна розпакувати тут, потрібен вільний простір!",
   "tentbag:empty-build-error": "У зоні будівництва немає твердих блоків!",
+  "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Підсвічування області захоплення намету Увімк/Вимк",
   "tentbag:illegal-item-error": "Не можна запакувати {0} у сумку!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Захист:</font> Зібрати намет можна лише натиснувши на підлогу!",
   "tentbag:pack-hunger-error": "Я надто голодний, щоб зараз це запакувати!",
@@ -18,6 +19,6 @@
   "tentbag:wp-remove-error": "Не вдалося видалити мітку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Порожня сумка для намету",
   "tentbagreworked:item-tentbagreworked-*-packed": "Запакована сумка для намету",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Спочатку потрібно щось у неї запакувати.\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>",
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Потрібно щось у неї запакувати.\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, щоб увімкнути попередній перегляд захоплюваної області</font>",
   "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>"
 }
