@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Marcajul nu a putut fi eliminat.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Geantă de cort goală",
   "tentbagreworked:item-tentbagreworked-*-packed": "Geantă de cort împachetată",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "O geantă de cort complet goală. Trebuie să împachetezi ceva în ea.\n\n<font color=\"#55ff55\">Apasă </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pentru a dezactiva holograma</font>\n<font color=\"#55ff55\">Apasă </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> pentru a activa previzualizarea zonei capturate</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "O geantă de cort împachetată, gata pentru aventurile tale!\n\n<font color=\"#55ff55\">Apasă </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pentru a dezactiva holograma</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "O geantă de cort complet goală. Trebuie să pui ceva în ea.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activează/dezactivează previzualizarea hologramei construcției</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - activează/dezactivează previzualizarea zonei capturate</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "O geantă de cort împachetată, pregătită pentru aventurile tale!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activează/dezactivează previzualizarea hologramei construcției</font>\n"
 }

@@ -10,6 +10,7 @@ using TentBagReworked.Config;
 using TentBagReworked.Util;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
@@ -22,32 +23,27 @@ public class PackableBehavior : CollectibleBehavior
     private static readonly MethodInfo? ResendWaypoints = typeof(WaypointMapLayer).GetMethod("ResendWaypoints", BindingFlags.NonPublic | BindingFlags.Instance);
     private static readonly MethodInfo? RebuildMapComponents = typeof(WaypointMapLayer).GetMethod("RebuildMapComponents", BindingFlags.NonPublic | BindingFlags.Instance);
 
-    // Новое поле для хранения правильной ссылки на систему мода
     private TentBagReworkedModSystem _modSystem = null!;
 
-    // Убираем static у свойств и перенаправляем их на локальный _modSystem
     private TentBagReworkedConfig Config => _modSystem.Config;
     private Dictionary<string, List<Guid>> SchematicHistory => _modSystem.SchematicHistory;
     private static string ExportFolderPath => TentBagReworkedModSystem.ExportFolderPath;
 
-    // Вспомогательные методы теперь тоже НЕ статические
-    private bool IsAirOrNull(Block? block) => block is not { Replaceable: < 9505 };
+    // Метод сделан статическим
+    private static bool IsAirOrNull(Block? block) => block is not { Replaceable: < 9505 };
     private bool IsPlantOrRock(Block? block) => Config.ReplacePlantsAndRocks && block?.Replaceable is >= 5500 and <= 6500;
     private bool IsReplaceable(Block? block) => IsAirOrNull(block) || IsPlantOrRock(block);
 
     private void SendClientError(EntityPlayer entity, string error) => _modSystem.SendClientError(entity.Player, error);
-    private void SendClientChatMessage(EntityPlayer entity, string message) => _modSystem.SendClientChatMessage(entity.Player, message);
+
+    // Вызов статического метода через имя класса
+    private static void SendClientChatMessage(EntityPlayer entity, string message) => TentBagReworkedModSystem.SendClientChatMessage(entity.Player, message);
 
     private readonly AssetLocation? _emptyBag;
     private readonly AssetLocation? _packedBag;
 
-    // Запас (в блоках) вокруг габаритов вставленной палатки, на который расширяется
-    // регион пересчёта света — чтобы свет от источников внутри корректно «вытек» наружу.
-    private const int RelightPadding = 16;
-
     private long _highlightId;
 
-    // Добавляем обязательный метод инициализации, где берем корректный ModSystem для текущей стороны (сервер/клиент)
     public override void OnLoaded(ICoreAPI api)
     {
         base.OnLoaded(api);
@@ -192,41 +188,60 @@ public class PackableBehavior : CollectibleBehavior
         bs.PlaceEntitiesAndBlockEntities(blockAccessor, entity.World, adjustedStart, bs.BlockCodes, bs.ItemCodes);
 
         // Багфикс освещения: источники света, расставленные
-        // Пересчёт запускаем только если в палатке реально есть светящиеся блоки, чтобы не
-        // нагружать сервер на каждой установке.
-        if (entity.Api is ICoreServerAPI sapi)
         {
-            bool schematicHasLight = bs.BlockCodes.Values.Any(code =>
+            entity.Api.Event.RegisterCallback(dt =>
             {
-                Block? b = entity.World.GetBlock(code);
-                // LightHsv — это структура ThreeBytes (как byte[3]): индексатор есть, но свойства .Length нет.
-                // Индекс 2 — яркость (Value в HSV); >0 означает, что блок светится.
-                return b != null && b.LightHsv[2] > 0;
-            });
+                IBlockAccessor wa = entity.World.GetBlockAccessor(true, true, false);
+                BlockPos scanPos = new(adjustedStart.dimension);
 
-            if (schematicHasLight)
-            {
-                try
+                for (int dx = 0; dx < bs.SizeX; dx++)
                 {
-                    int dim = adjustedStart.dimension;
-                    BlockPos relightMin = new(
-                        adjustedStart.X - RelightPadding,
-                        Math.Max(0, adjustedStart.Y - RelightPadding),
-                        adjustedStart.Z - RelightPadding,
-                        dim);
-                    BlockPos relightMax = new(
-                        adjustedStart.X + bs.SizeX - 1 + RelightPadding,
-                        adjustedStart.Y + bs.SizeY - 1 + RelightPadding,
-                        adjustedStart.Z + bs.SizeZ - 1 + RelightPadding,
-                        dim);
+                    for (int dy = 0; dy < bs.SizeY; dy++)
+                    {
+                        for (int dz = 0; dz < bs.SizeZ; dz++)
+                        {
+                            scanPos.Set(adjustedStart.X + dx, adjustedStart.Y + dy, adjustedStart.Z + dz);
 
-                    sapi.WorldManager.FullRelight(relightMin, relightMax, true);
+                            Block block = wa.GetBlock(scanPos);
+                            if (block.BlockId == 0 || block.LightHsv[2] <= 0)
+                            {
+                                continue;
+                            }
+
+                            BlockPos lightPos = scanPos.Copy();
+                            try
+                            {
+                                BlockEntity? be = wa.GetBlockEntity(lightPos);
+                                ITreeAttribute? beData = null;
+                                if (be != null)
+                                {
+                                    beData = new TreeAttribute();
+                                    be.ToTreeAttributes(beData);
+                                }
+
+                                int blockId = block.BlockId;
+
+                                wa.SetBlock(0, lightPos);
+                                wa.SetBlock(blockId, lightPos);
+
+                                if (beData != null)
+                                {
+                                    BlockEntity? newBe = wa.GetBlockEntity(lightPos);
+                                    if (newBe != null)
+                                    {
+                                        newBe.FromTreeAttributes(beData, entity.World);
+                                        newBe.MarkDirty(true);
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                _modSystem.Logger.Warning("[TentBagReworked] Light re-trigger failed at " + lightPos + ": " + e);
+                            }
+                        }
+                    }
                 }
-                catch (Exception e)
-                {
-                    _modSystem.Logger.Warning("[TentBagReworked] Relight after unpack failed: " + e);
-                }
-            }
+            }, 250);
         }
 
         // drop empty item on the ground and remove empty from inventory
@@ -266,9 +281,14 @@ public class PackableBehavior : CollectibleBehavior
         string playerName = player.GetName() ?? "unknown";
         Guid id = Guid.NewGuid();
 
-        if (!SchematicHistory.ContainsKey(playerName)) SchematicHistory[playerName] = new List<Guid>();
+        // Упрощенная инициализация и оптимизация поиска в словаре
+        if (!SchematicHistory.TryGetValue(playerName, out var history))
+        {
+            history = [];
+            SchematicHistory[playerName] = history;
+        }
 
-        SchematicHistory[playerName].Add(id);
+        history.Add(id);
 
         bs.Save(Path.Combine(ExportFolderPath, $"tentbag-schematic-{playerName}-{id}.json"));
     }
@@ -276,11 +296,11 @@ public class PackableBehavior : CollectibleBehavior
     private void CleanOldSchematics(Entity player)
     {
         string playerName = player.GetName() ?? "unknown";
-        if (SchematicHistory.ContainsKey(playerName) && SchematicHistory[playerName].Count > Config.MaxSchematicHistory)
-        {
-            SchematicHistory.TryGetValue(playerName, out List<Guid>? schematics);
 
-            if (schematics != null && schematics.Count > 0)
+        // TryGetValue вместо ContainsKey
+        if (SchematicHistory.TryGetValue(playerName, out List<Guid>? schematics) && schematics.Count > Config.MaxSchematicHistory)
+        {
+            if (schematics.Count > 0)
             {
                 SchematicHistory[playerName].RemoveAt(0);
 
@@ -305,9 +325,8 @@ public class PackableBehavior : CollectibleBehavior
     {
         if (player.Api is ICoreServerAPI)
         {
-            var mapLayer = player.Api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.FirstOrDefault(ml => ml is WaypointMapLayer) as WaypointMapLayer;
-
-            if (mapLayer != null)
+            // Сопоставление шаблонов
+            if (player.Api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.FirstOrDefault(ml => ml is WaypointMapLayer) is WaypointMapLayer mapLayer)
             {
                 Waypoint wp = new()
                 {
@@ -329,25 +348,30 @@ public class PackableBehavior : CollectibleBehavior
         if (player.Api is ICoreServerAPI serverApi)
         {
             IServerPlayer? serverPlayer = player.Player as IServerPlayer;
-            var mapLayer = player.Api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.FirstOrDefault(ml => ml is WaypointMapLayer) as WaypointMapLayer;
-            var waypoints = GetWaypoints(serverApi);
 
-            if (waypoints != null && mapLayer != null)
+            // Сопоставление шаблонов
+            if (player.Api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.FirstOrDefault(ml => ml is WaypointMapLayer) is WaypointMapLayer mapLayer)
             {
-                foreach (Waypoint waypoint in waypoints.ToList().Where(w => w.OwningPlayerUid == player.PlayerUID))
+                var waypoints = GetWaypoints(serverApi);
+                if (waypoints != null)
                 {
-                    if (waypoint.Title == Lang.WaypointTitle(player.EntityId))
+                    foreach (Waypoint waypoint in waypoints.ToList().Where(w => w.OwningPlayerUid == player.PlayerUID))
                     {
-                        if (player == null)
+                        if (waypoint.Title == Lang.WaypointTitle(player.EntityId))
                         {
-                            player!.Api.Logger.Error(Lang.WpRemoveError());
-                            StoreWaypoint(waypoint.OwningPlayerUid, waypoint);
-                            continue;
-                        }
+                            if (player == null) // Этот блок условия всегда ложен, но оставил как в оригинале
+                            {
+                                player!.Api.Logger.Error(Lang.WpRemoveError());
+                                StoreWaypoint(waypoint.OwningPlayerUid, waypoint);
+                                continue;
+                            }
 
-                        waypoints.Remove(waypoint);
-                        ResendWaypoints?.Invoke(mapLayer, new object[] { serverPlayer! });
-                        RebuildMapComponents?.Invoke(mapLayer, null);
+                            waypoints.Remove(waypoint);
+
+                            // Упрощенная инициализация массива параметров
+                            ResendWaypoints?.Invoke(mapLayer, [serverPlayer!]);
+                            RebuildMapComponents?.Invoke(mapLayer, null);
+                        }
                     }
                 }
             }
@@ -364,8 +388,15 @@ public class PackableBehavior : CollectibleBehavior
     private static void StoreWaypoint(string? playerUID, Waypoint wp)
     {
         if (string.IsNullOrEmpty(playerUID)) return;
-        if (!TentBagReworkedModSystem.PendingWaypointNames.ContainsKey(playerUID)) TentBagReworkedModSystem.PendingWaypointNames[playerUID] = new();
-        TentBagReworkedModSystem.PendingWaypointNames[playerUID].Add(wp.Title);
+
+        // Упрощенная инициализация и TryGetValue
+        if (!TentBagReworkedModSystem.PendingWaypointNames.TryGetValue(playerUID, out var list))
+        {
+            list = [];
+            TentBagReworkedModSystem.PendingWaypointNames[playerUID] = list;
+        }
+
+        list.Add(wp.Title);
     }
 
     private static void ClearArea(IWorldAccessor world, BlockPos start, BlockPos end)
@@ -388,7 +419,8 @@ public class PackableBehavior : CollectibleBehavior
 
     private bool CanPack(EntityPlayer entity, IBlockAccessor blockAccessor, BlockPos start, BlockPos end, ref int solidBlockCount)
     {
-        List<BlockPos> blocks = new();
+        // Упрощенная инициализация
+        List<BlockPos> blocks = [];
         bool notified = false;
         bool canPack = true;
         int localSolidBlockCount = 0;
@@ -451,7 +483,8 @@ public class PackableBehavior : CollectibleBehavior
 
     private bool CanUnpack(EntityPlayer entity, IBlockAccessor blockAccessor, BlockPos start, BlockPos end, ref int solidBlockCount)
     {
-        List<BlockPos> blocks = new();
+        // Упрощенная инициализация
+        List<BlockPos> blocks = [];
         bool notified = false;
         bool canUnpack = true;
 
@@ -574,11 +607,14 @@ public class PackableBehavior : CollectibleBehavior
         }
 
         int color = Config.HighlightErrorColor.ToColor().Reverse();
-        List<int> colors = Enumerable.Repeat(color, blocks.Count).ToList();
+
+        // Упрощенная инициализация массива
+        List<int> colors = [.. Enumerable.Repeat(color, blocks.Count)];
         entity.World.HighlightBlocks(entity.Player, 1337, blocks, colors);
 
         _highlightId = entity.Api.Event.RegisterCallback(_ => {
-            List<BlockPos> empty = Array.Empty<BlockPos>().ToList();
+            // Упрощенная инициализация пустого массива
+            List<BlockPos> empty = [];
             entity.World.HighlightBlocks(entity.Player, 1337, empty);
         }, 2500);
 

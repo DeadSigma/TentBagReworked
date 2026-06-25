@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "No se pudo eliminar la marca.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Bolsa de tienda vacía",
   "tentbagreworked:item-tentbagreworked-*-packed": "Bolsa de tienda empaquetada",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una bolsa para tienda completamente vacía. Necesitas guardar algo en ella.\n\n<font color=\"#55ff55\">Pulsa </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desactivar el holograma</font>\n<font color=\"#55ff55\">Pulsa </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> para activar la vista previa del área capturada</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una bolsa de tienda empaquetada, ¡lista para tus aventuras!\n\n<font color=\"#55ff55\">Pulsa </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desactivar el holograma</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una bolsa de tienda completamente vacía. Necesitas guardar algo dentro.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activar/desactivar la vista previa del holograma de construcción</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - activar/desactivar la vista previa del área capturada</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "¡Una bolsa de tienda empaquetada, lista para tus aventuras!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activar/desactivar la vista previa del holograma de construcción</font>\n"
 }

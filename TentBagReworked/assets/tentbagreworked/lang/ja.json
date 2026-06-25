@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "マーカーを削除できませんでした。",
   "tentbagreworked:item-tentbagreworked-*-empty": "空のテントバッグ",
   "tentbagreworked:item-tentbagreworked-*-packed": "梱包済みテントバッグ",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全に空のテントバッグです。何かを収納する必要があります。\n\n<font color=\"#55ff55\">ホログラムを無効にするには </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> を押してください</font>\n<font color=\"#55ff55\">取得範囲のプレビューを有効にするには </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> を押してください</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "梱包済みのテントバッグです。冒険の準備は万端！\n\n<font color=\"#55ff55\"> </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> キーを押してホログラムを無効化</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全に空のテントバッグです。何かを中に詰める必要があります。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 建築ホログラムのプレビューをオン/オフ</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 取得範囲のプレビューをオン/オフ</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "冒険の準備が整った、荷物の詰まったテントバッグです！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 建築ホログラムのプレビューをオン/オフ</font>\n"
 }

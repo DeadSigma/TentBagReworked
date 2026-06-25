@@ -4,7 +4,6 @@ namespace TentBagReworked.Config;
 
 public class TentBagReworkedConfig
 {
-
     /// <summary>
     /// Maximum allowable radius for tent build
     /// </summary>
@@ -14,7 +13,6 @@ public class TentBagReworkedConfig
     /// Maximum allowable height for tent build
     /// </summary>
     public int MaxHeight { get; set; } = 7;
-
 
     /// <summary>
     /// Build Effort is calculated per solid block, so a 3x3x7 tent would have a maximum possible BuildEffort of 3*3*3*7 = 189
@@ -94,7 +92,7 @@ public class TentBagReworkedConfig
     /// <summary>
     /// Banned blocks (ignored if AllowListMode = true)
     /// </summary>
-    public string[] BannedBlocks { get; set; } = {
+    public string[] BannedBlocks { get; set; } = [
         "game:paperlantern-*",
         "game:chandelier-*",
         "game:log-grown-*",
@@ -119,12 +117,12 @@ public class TentBagReworkedConfig
         "game:claypot-cooked",
         "game:anvil-*",
         "game:forge"
-    };
+    ];
 
     /// <summary>
-    /// Allowed blocksk (ignored if AllowListMode = false
+    /// Allowed blocksk (ignored if AllowListMode = false)
     /// </summary>
-    public string[] AllowedBlocks { get; set; } = {
+    public string[] AllowedBlocks { get; set; } = [
         "game:soil-*"
-    };
+    ];
 }

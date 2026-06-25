@@ -7,7 +7,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
-namespace TentBagReworked.Rendering;
+namespace TentBagReworked;
 
 /// <summary>
 /// Клиентский предпросмотр палатки (вариант A — серверное мини-измерение, как в World Edit).
@@ -37,8 +37,10 @@ public class TentHologramRenderer : ModSystem
 
     // Имя горячей клавиши
     private const string HotkeyCode = "tentbagpreview";
+    private const string PreviewEnabledSetting = "tentbagreworked-preview-enabled";
 
-    private static readonly List<BlockPos> EmptyBlocks = new();
+    // Упрощенная инициализация коллекции
+    private static readonly List<BlockPos> EmptyBlocks = [];
 
     private ICoreClientAPI capi = null!;
 
@@ -70,6 +72,12 @@ public class TentHologramRenderer : ModSystem
         capi = api;
         PreviewInstance = this;
 
+        // Восстанавливаем выбор игрока из прошлой сессии
+        if (api.Settings.Bool.Exists(PreviewEnabledSetting))
+        {
+            PreviewEnabled = api.Settings.Bool[PreviewEnabledSetting];
+        }
+
         api.Event.RegisterGameTickListener(OnPreviewTick, 100);
 
         api.Input.RegisterHotKey(HotkeyCode, Lang.HotkeyTogglePreview(), GlKeys.B, HotkeyType.GUIOrOtherControls);
@@ -79,6 +87,8 @@ public class TentHologramRenderer : ModSystem
     private bool OnTogglePreview(KeyCombination comb)
     {
         PreviewEnabled = !PreviewEnabled;
+        capi.Settings.Bool[PreviewEnabledSetting] = PreviewEnabled; // сохраняем выбор
+
         if (!PreviewEnabled)
         {
             if (sentEnable)
@@ -174,7 +184,8 @@ public class TentHologramRenderer : ModSystem
     //  Клиентская проверка места (повтор логики PackableBehavior.CanUnpack)
     private bool ValidatePlacement(BlockPos basePos, out List<BlockPos> badBlocks)
     {
-        List<BlockPos> bad = new();
+        // Упрощенная инициализация
+        List<BlockPos> bad = [];
         TentBagReworkedConfig cfg = Cfg;
         IBlockAccessor ba = capi.World.BlockAccessor;
         IClientPlayer? player = capi.World.Player;
@@ -232,7 +243,9 @@ public class TentHologramRenderer : ModSystem
         }
 
         int color = Cfg.HighlightErrorColor.ToColor().Reverse();
-        List<int> colors = Enumerable.Repeat(color, badBlocks.Count).ToList();
+
+        // Упрощенная инициализация
+        List<int> colors = [.. Enumerable.Repeat(color, badBlocks.Count)];
         world.HighlightBlocks(player, PreviewHighlightSlot, badBlocks, colors);
         highlightsShown = true;
     }

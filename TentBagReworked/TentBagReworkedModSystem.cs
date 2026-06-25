@@ -5,7 +5,6 @@ using System.IO;
 using TentBagReworked.Behaviors;
 using TentBagReworked.Config;
 using TentBagReworked.Items;
-using TentBagReworked.Rendering;
 using TentBagReworked.Util;
 using TentBagReworked;
 using Vintagestory.API.Client;
@@ -24,7 +23,7 @@ namespace TentBagReworked
         public static TentBagReworkedModSystem Instance { get; private set; } = null!;
 
         public ICoreAPI Api { get; private set; } = null!;
-        public ICoreClientAPI clientApi { get; private set; } = null!;
+        public ICoreClientAPI ClientApi { get; private set; } = null!;
 
         public ILogger Logger => Mod.Logger;
         public string ModId => Mod.Info.ModID;
@@ -35,7 +34,7 @@ namespace TentBagReworked
         /// В одиночной игре заполняется на стыковке локального клиента; в чистом
         /// клиенте мультиплеера — единственный источник правды. Null до получения
         /// </summary>
-        public static TentBagReworkedConfig? SyncedConfig;
+        public static TentBagReworkedConfig? SyncedConfig { get; set; }
 
         /// <summary>
         /// Конфиг, который должна использовать клиентская логика (предпросмотр/голограмма):
@@ -43,9 +42,9 @@ namespace TentBagReworked
         /// </summary>
         public TentBagReworkedConfig EffectiveConfig => SyncedConfig ?? Config;
 
-        public static Dictionary<string, List<string>> PendingWaypointNames = new();
+        public static Dictionary<string, List<string>> PendingWaypointNames { get; set; } = [];
 
-        public Dictionary<string, List<Guid>> SchematicHistory = new();
+        public Dictionary<string, List<Guid>> SchematicHistory { get; set; } = [];
 
         internal static string ExportFolderPath = null!;
         private TentBagReworkedConfig? _config;
@@ -57,6 +56,7 @@ namespace TentBagReworked
         // Отдельный id подсветки, чтобы не конфликтовать с подсветкой мешающих блоков (1337).
         private const string GrabAreaHotkey = "tentbagreworked-showgraparea";
         private const int GrabAreaHighlightId = 1338;
+        private const string GrabAreaShownSetting = "tentbagreworked-graparea-shown";
         private bool _grabAreaShown;
         private BlockPos? _lastGrabAreaPos;
         // Запоминаем и грань тоже: цвет зависит от грани (верх -> можно собирать, иначе -> нельзя),
@@ -65,9 +65,9 @@ namespace TentBagReworked
 
         // Серверная часть предпросмотра (мини-измерения на игрока)
         private ICoreServerAPI? _sapi;
-        private readonly Dictionary<string, IMiniDimension> _previewDims = new();
-        private readonly Dictionary<string, int> _previewDimIds = new();
-        private readonly Dictionary<string, string> _previewContents = new();
+        private readonly Dictionary<string, IMiniDimension> _previewDims = [];
+        private readonly Dictionary<string, int> _previewDimIds = [];
+        private readonly Dictionary<string, string> _previewContents = [];
 
         public TentBagReworkedModSystem()
         {
@@ -89,10 +89,10 @@ namespace TentBagReworked
 
         public override void StartClientSide(ICoreClientAPI capi)
         {
-            clientApi = capi;
+            ClientApi = capi;
 
             // Типы пакетов регистрируются в одинаковом порядке на клиенте и сервере
-            _clientChannel = clientApi.Network.RegisterChannel(Mod.Info.ModID)
+            _clientChannel = ClientApi.Network.RegisterChannel(Mod.Info.ModID)
                 .RegisterMessageType<ErrorPacket>()
                 .RegisterMessageType<ConfigSyncPacket>()
                 .RegisterMessageType<RequestTentPreviewPacket>()
@@ -104,24 +104,32 @@ namespace TentBagReworked
                         string translatedText = Vintagestory.API.Config.Lang.Get(packet.Error);
 
                         // Изменился код ошибки с "error" на уникальный "tentbag-error"
-                        clientApi.TriggerIngameError(this, "tentbag-error", translatedText);
+                        ClientApi.TriggerIngameError(this, "tentbag-error", translatedText);
                     }
                 })
                 .SetMessageHandler<ConfigSyncPacket>(OnConfigFromServer)
                 .SetMessageHandler<TentPreviewPacket>(OnPreviewFromServer);
 
             // Горячая клавиша: показать/скрыть зону, которую заберёт пустой мешок
-            clientApi.Input.RegisterHotKey(GrabAreaHotkey, TentBagReworked.Config.Lang.HotkeyHighlightGrabArea(), GlKeys.P, HotkeyType.CharacterControls);
-            clientApi.Input.SetHotKeyHandler(GrabAreaHotkey, OnToggleGrabArea);
+            ClientApi.Input.RegisterHotKey(GrabAreaHotkey, TentBagReworked.Config.Lang.HotkeyHighlightGrabArea(), GlKeys.P, HotkeyType.GUIOrOtherControls);
+            ClientApi.Input.SetHotKeyHandler(GrabAreaHotkey, OnToggleGrabArea);
+
+            // Восстанавливаем сохранённый выбор игрока из прошлой сессии
+            if (ClientApi.Settings.Bool.Exists(GrabAreaShownSetting))
+            {
+                _grabAreaShown = ClientApi.Settings.Bool[GrabAreaShownSetting];
+            }
 
             // Пока подсветка включена — обновляем каркас зоны за тем местом, куда смотрит игрок
-            clientApi.Event.RegisterGameTickListener(_ => { if (_grabAreaShown) UpdateGrabArea(); }, 150);
+            ClientApi.Event.RegisterGameTickListener(_ => { if (_grabAreaShown) UpdateGrabArea(); }, 150);
         }
 
         /// <summary>Клиент: переключить подсветку зоны захвата.</summary>
         private bool OnToggleGrabArea(KeyCombination comb)
         {
             _grabAreaShown = !_grabAreaShown;
+            ClientApi.Settings.Bool[GrabAreaShownSetting] = _grabAreaShown; // сохраняем выбор
+
             if (_grabAreaShown)
             {
                 _lastGrabAreaPos = null; // заставить перерисовать немедленно
@@ -139,7 +147,7 @@ namespace TentBagReworked
         /// <summary>Клиент: нарисовать каркас зоны захвата на месте взгляда (только с пустым мешком в руке).</summary>
         private void UpdateGrabArea()
         {
-            IClientPlayer? player = clientApi?.World.Player;
+            IClientPlayer? player = ClientApi?.World.Player;
             BlockSelection? sel = player?.CurrentBlockSelection;
             ItemStack? stack = player?.InventoryManager?.ActiveHotbarSlot?.Itemstack;
 
@@ -165,7 +173,7 @@ namespace TentBagReworked
             _lastGrabAreaPos = sel.Position.Copy();
             _lastGrabAreaFace = sel.Face;
 
-            TentArea.GetPackBounds(EffectiveConfig, clientApi!.World.BlockAccessor, sel.Position, out BlockPos start, out BlockPos end);
+            TentArea.GetPackBounds(EffectiveConfig, ClientApi!.World.BlockAccessor, sel.Position, out BlockPos start, out BlockPos end);
             List<BlockPos> edges = TentArea.GetCuboidEdges(start, end);
 
             // Собирать палатку можно только по ВЕРХНЕЙ грани (по полу). Если игрок смотрит на стену
@@ -173,8 +181,9 @@ namespace TentBagReworked
             bool canPackHere = sel.Face == BlockFacing.UP;
             string hex = canPackHere ? EffectiveConfig.HighlightPickupColor : EffectiveConfig.HighlightErrorColor;
             int color = hex.ToColor().Reverse();
-            List<int> colors = Enumerable.Repeat(color, edges.Count).ToList();
-            clientApi.World.HighlightBlocks(player, GrabAreaHighlightId, edges, colors);
+
+            List<int> colors = [.. Enumerable.Repeat(color, edges.Count)];
+            ClientApi.World.HighlightBlocks(player, GrabAreaHighlightId, edges, colors);
         }
 
         /// <summary>Клиент: убрать подсветку зоны захвата.</summary>
@@ -182,10 +191,10 @@ namespace TentBagReworked
         {
             _lastGrabAreaPos = null;
             _lastGrabAreaFace = null;
-            IClientPlayer? player = clientApi?.World.Player;
+            IClientPlayer? player = ClientApi?.World.Player;
             if (player != null)
             {
-                clientApi!.World.HighlightBlocks(player, GrabAreaHighlightId, new List<BlockPos>());
+                ClientApi!.World.HighlightBlocks(player, GrabAreaHighlightId, []);
             }
         }
 
@@ -410,7 +419,8 @@ namespace TentBagReworked
             }
         }
 
-        public void SendClientChatMessage(IPlayer? player, string message)
+        // IDE1822: Метод сделан статическим, так как не использует локальные поля класса
+        public static void SendClientChatMessage(IPlayer? player, string message)
         {
             if (player is IServerPlayer serverPlayer)
             {
@@ -514,6 +524,7 @@ namespace TentBagReworked
             public int PosY;
             public int PosZ;
         }
+
         private void EnsureTentSchematicExists(ICoreServerAPI sapi)
         {
             // Получаем путь к стандартной папке WorldEdit: ....\VintagestoryData\WorldEdit
@@ -529,7 +540,7 @@ namespace TentBagReworked
             {
                 // Ищем файл внутри ассетов мода
                 // Домен: "tentbagreworked", Путь: "config/tent.json"
-                AssetLocation assetLocation = new AssetLocation("tentbagreworked", "config/tent.json");
+                AssetLocation assetLocation = new("tentbagreworked", "config/tent.json");
                 IAsset? asset = sapi.Assets.Get(assetLocation);
 
                 if (asset != null)

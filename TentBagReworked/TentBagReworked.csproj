@@ -59,10 +59,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
 </ItemGroup>
-
-<ItemGroup>
-  <Folder Include="render\" />
-</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<PropertyGroup>
 			<ModName>$([System.Text.RegularExpressions.Regex]::Match('$([System.IO.File]::ReadAllText("$(ProjectDir)modinfo.json"))', '"name"\s*:\s*"([^"]+)"').Groups[1].Value)</ModName>

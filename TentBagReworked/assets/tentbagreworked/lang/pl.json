@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Nie udało się usunąć znacznika.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Pusta torba na namiot",
   "tentbagreworked:item-tentbagreworked-*-packed": "Spakowana torba na namiot",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Całkowicie pusta torba na namiot. Musisz coś do niej spakować.\n\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, aby wyłączyć hologram</font>\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, aby włączyć podgląd przechwytywanego obszaru</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Spakowana torba na namiot, gotowa na twoje przygody!\n\n<font color=\"#55ff55\">Naciśnij </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, aby wyłączyć hologram</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Całkowicie pusta torba na namiot. Trzeba coś do niej spakować.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - włącz/wyłącz podgląd hologramu budowli</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - włącz/wyłącz podgląd zajmowanego obszaru</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Spakowana torba na namiot, gotowa na twoje przygody!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - włącz/wyłącz podgląd hologramu budowli</font>\n"
 }

@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Не ўдалося выдаліць метку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Пустая сумка для намёта",
   "tentbagreworked:item-tentbagreworked-*-packed": "Запакаваная сумка для намёта",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Цалкам пустая сумка для намёта. Трэба нешта ў яе запакаваць.\n\n<font color=\"#55ff55\">Націсніце </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, каб адключыць галаграму</font>\n<font color=\"#55ff55\">Націсніце </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, каб уключыць папярэдні прагляд вобласці захопу</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Спакаваная сумка для палаткі, гатовая да вашых прыгод!\n\n<font color=\"#55ff55\">Націсніце </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, каб адключыць галаграму</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Цалкам пустая сумка для палаткі. Трэба нешта ў яе спакаваць.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - укл./выкл. папярэдні прагляд галаграмы пабудовы</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - укл./выкл. папярэдні прагляд захопленай вобласці</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Спакаваная сумка для палаткі, гатовая да вашых прыгод!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - укл./выкл. папярэдні прагляд галаграмы пабудовы</font>\n"
 }

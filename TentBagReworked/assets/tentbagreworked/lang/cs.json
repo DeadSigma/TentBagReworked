@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Nepodařilo se odstranit značku.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Prázdná taška na stan",
   "tentbagreworked:item-tentbagreworked-*-packed": "Sbalená taška na stan",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Zcela prázdná taška na stan. Je potřeba do ní něco zabalit.\n\n<font color=\"#55ff55\">Stiskněte </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pro vypnutí hologramu</font>\n<font color=\"#55ff55\">Stiskněte </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> pro zapnutí náhledu zabírané oblasti</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Sbalená taška se stanem, připravená na vaše dobrodružství!\n\n<font color=\"#55ff55\">Stiskněte </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pro vypnutí hologramu</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Úplně prázdná taška na stan. Je potřeba do ní něco zabalit.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - zapnout/vypnout náhled hologramu stavby</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - zapnout/vypnout náhled zabírané oblasti</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Zabalená taška na stan, připravená na vaše dobrodružství!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - zapnout/vypnout náhled hologramu stavby</font>\n"
 }

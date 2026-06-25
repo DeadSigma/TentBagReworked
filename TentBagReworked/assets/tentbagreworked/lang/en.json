@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Failed to remove waypoint.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Empty Tent Bag",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packed Tent Bag",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You need to pack something into it.\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> to enable the preview of the captured area</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#55ff55\">Press </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> to disable the hologram</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You need to pack something into it.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle building hologram preview</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - toggle captured area preview</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle building hologram preview</font>\n"
 }

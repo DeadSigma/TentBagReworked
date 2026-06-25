@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "无法删除标记。",
   "tentbagreworked:item-tentbagreworked-*-empty": "空帐篷袋",
   "tentbagreworked:item-tentbagreworked-*-packed": "已打包帐篷袋",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "一个完全空的帐篷袋。你需要往里面打包一些东西。\n\n<font color=\"#55ff55\">按下 </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> 以关闭全息预览</font>\n<font color=\"#55ff55\">按下 </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> 以启用捕获区域的预览</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "已打包好的帐篷包，随时准备开启你的冒险！\n\n<font color=\"#55ff55\">按下 </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> 以关闭全息投影</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "一个完全空的帐篷袋。你需要往里面装点东西。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭建筑全息投影预览</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 开启/关闭捕获区域预览</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "一个已经打包好的帐篷袋，随时准备陪你踏上冒险之旅！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭建筑全息投影预览</font>\n"
 }

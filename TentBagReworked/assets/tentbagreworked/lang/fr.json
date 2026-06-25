@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Impossible de supprimer le marqueur.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Sac de tente vide",
   "tentbagreworked:item-tentbagreworked-*-packed": "Sac de tente emballé",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Un sac de tente complètement vide. Vous devez y ranger quelque chose.\n\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pour désactiver l'hologramme</font>\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> pour activer l'aperçu de la zone capturée</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Sac de tente emballé, prêt pour vos aventures !\n\n<font color=\"#55ff55\">Appuyez sur </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> pour désactiver l’hologramme</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Un sac de tente complètement vide. Il faut y emballer quelque chose.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de construction</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de la zone capturée</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Un sac de tente emballé, prêt pour vos aventures !\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de construction</font>\n"
 }

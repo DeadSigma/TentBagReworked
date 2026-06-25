@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Impossibile rimuovere il segnalino.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Borsa per tenda vuota",
   "tentbagreworked:item-tentbagreworked-*-packed": "Borsa per tenda impacchettata",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una borsa per tenda completamente vuota. Devi metterci qualcosa dentro.\n\n<font color=\"#55ff55\">Premi </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> per disattivare l'ologramma</font>\n<font color=\"#55ff55\">Premi </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> per attivare l'anteprima dell'area catturata</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una borsa per tenda già pronta e confezionata, pronta per le tue avventure!\n\n<font color=\"#55ff55\">Premi </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> per disattivare l'ologramma</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una borsa per tenda completamente vuota. Devi metterci dentro qualcosa.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della costruzione</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'area catturata</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una borsa per tenda già pronta, pronta per le tue avventure!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della costruzione</font>\n"
 }

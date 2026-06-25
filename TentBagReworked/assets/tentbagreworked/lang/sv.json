@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Det gick inte att ta bort markeringen.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Tom tältväska",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packad tältväska",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du måste packa något i den.\n\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> för att stänga av hologrammet</font>\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> för att aktivera förhandsvisningen av det fångade området</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "En packad tältväska, redo för dina äventyr!\n\n<font color=\"#55ff55\">Tryck på </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> för att stänga av hologrammet</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du behöver packa något i den.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av byggnadshologrammet</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av det upptagna området</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "En packad tältväska, redo för dina äventyr!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av byggnadshologrammet</font>\n"
 }

@@ -8,7 +8,7 @@
     "El_Neuman"
   ],
   "description": "Adds a tent bag for Vintage Story with variable satiety cost",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "dependencies": {
     "game": ""
   }

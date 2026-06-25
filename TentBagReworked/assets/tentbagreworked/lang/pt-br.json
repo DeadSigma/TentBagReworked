@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Falha ao remover o marcador.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Bolsa de barraca vazia",
   "tentbagreworked:item-tentbagreworked-*-packed": "Bolsa de barraca empacotada",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Uma bolsa de barraca completamente vazia. Você precisa guardar algo nela.\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\"> para ativar a pré-visualização da área capturada</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Uma bolsa de barraca pronta e empacotada para suas aventuras!\n\n<font color=\"#55ff55\">Pressione </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\"> para desativar o holograma</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Uma bolsa de barraca completamente vazia. Você precisa guardar algo nela.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - ativar/desativar a pré-visualização do holograma da construção</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - ativar/desativar a pré-visualização da área capturada</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Uma bolsa de barraca empacotada, pronta para suas aventuras!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - ativar/desativar a pré-visualização do holograma da construção</font>\n"
 }

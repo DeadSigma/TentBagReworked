@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Markierung konnte nicht entfernt werden.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Leere Zelttasche",
   "tentbagreworked:item-tentbagreworked-*-packed": "Gepackte Zelttasche",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Eine völlig leere Zelttasche. Du musst etwas hineinpacken.\n\n<font color=\"#55ff55\">Drücke </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, um das Hologramm auszuschalten</font>\n<font color=\"#55ff55\">Drücke </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, um die Vorschau des erfassten Bereichs einzuschalten</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Gepackte Zelttasche, bereit für deine Abenteuer!\n\n<font color=\"#55ff55\">Drücke </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, um das Hologramm auszublenden</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Eine völlig leere Zelttasche. Da muss erst noch etwas hineingepackt werden.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - Vorschau des Bau-Hologramms ein-/ausschalten</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - Vorschau des belegten Bereichs ein-/ausschalten</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Eine gepackte Zelttasche, bereit für deine Abenteuer!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - Vorschau des Bau-Hologramms ein-/ausschalten</font>\n"
 }

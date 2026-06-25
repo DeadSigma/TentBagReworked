@@ -19,6 +19,6 @@
   "tentbag:wp-remove-error": "Не вдалося видалити мітку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Порожня сумка для намету",
   "tentbagreworked:item-tentbagreworked-*-packed": "Запакована сумка для намету",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Потрібно щось у неї запакувати.\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">P</font><font color=\"#55ff55\">, щоб увімкнути попередній перегляд захоплюваної області</font>",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#55ff55\">Натисніть </font><font color=\"#ff5555\">B</font><font color=\"#55ff55\">, щоб вимкнути голограму</font>"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Потрібно щось у неї запакувати.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми будівлі</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд захопленої області</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми будівлі</font>\n"
 }
