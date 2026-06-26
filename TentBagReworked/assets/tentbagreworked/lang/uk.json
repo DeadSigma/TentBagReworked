@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "Не можна розпакувати тут, потрібен вільний простір!",
   "tentbag:empty-build-error": "У зоні будівництва немає твердих блоків!",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Підсвічування області захоплення намету Увімк/Вимк",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Повернути намет на 90°",
   "tentbag:illegal-item-error": "Не можна запакувати {0} у сумку!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Захист:</font> Зібрати намет можна лише натиснувши на підлогу!",
   "tentbag:pack-hunger-error": "Я надто голодний, щоб зараз це запакувати!",
   "tentbag:pack-success": "Запаковано блоків: {0}, витрачено ситості: {1}.",
   "tentbag:preview-toggled": "Попередній перегляд намету: {0}",
+  "tentbag:rotation-info": "Намет повернуто на {0} градусів.",
   "tentbag:solid-ground-error": "Не можна розпакувати тут, потрібна тверда поверхня!",
   "tentbag:status-off": "Вимк.",
   "tentbag:status-on": "Увімк.",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Не вдалося видалити мітку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Порожня сумка для намету",
   "tentbagreworked:item-tentbagreworked-*-packed": "Запакована сумка для намету",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Потрібно щось у неї запакувати.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми будівлі</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд захопленої області</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми будівлі</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Повністю порожня сумка для намету. Потрібно щось у неї запакувати.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми намету</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд захопленої області</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - повернути намет</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Запакована сумка для намету, готова до ваших пригод!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - увімк./вимк. попередній перегляд голограми намету</font>\n"
 }

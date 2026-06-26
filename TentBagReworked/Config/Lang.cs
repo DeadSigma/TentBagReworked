@@ -1,6 +1,7 @@
 namespace TentBagReworked.Config;
 
-public abstract class Lang {
+public abstract class Lang
+{
     public static string UnpackError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:unpack-error");
     public static string IllegalItemError(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:illegal-item-error", args);
     public static string SolidGroundError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:solid-ground-error");
@@ -18,4 +19,6 @@ public abstract class Lang {
     public static string PreviewToggled(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:preview-toggled", args);
     public static string HotkeyTogglePreview(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-toggle-preview");
     public static string HotkeyHighlightGrabArea(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-highlight-grab-area");
+    public static string HotkeyRotate(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-rotate");
+    public static string RotationInfo(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:rotation-info", args);
 }

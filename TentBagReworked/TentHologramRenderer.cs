@@ -37,6 +37,7 @@ public class TentHologramRenderer : ModSystem
 
     // Имя горячей клавиши
     private const string HotkeyCode = "tentbagpreview";
+    private const string RotateHotkeyCode = "tentbagrotate";
     private const string PreviewEnabledSetting = "tentbagreworked-preview-enabled";
 
     // Упрощенная инициализация коллекции
@@ -54,6 +55,7 @@ public class TentHologramRenderer : ModSystem
     // Что в последний раз запросили у сервера
     private bool sentEnable;
     private string? sentContents;
+    private int sentRotation = -1; // -1 => первый запрос точно отправится
     private BlockPos? lastSentTarget;
 
     // Состояние проверки места.
@@ -82,6 +84,9 @@ public class TentHologramRenderer : ModSystem
 
         api.Input.RegisterHotKey(HotkeyCode, Lang.HotkeyTogglePreview(), GlKeys.B, HotkeyType.GUIOrOtherControls);
         api.Input.SetHotKeyHandler(HotkeyCode, OnTogglePreview);
+
+        api.Input.RegisterHotKey(RotateHotkeyCode, Lang.HotkeyRotate(), GlKeys.R, HotkeyType.GUIOrOtherControls);
+        api.Input.SetHotKeyHandler(RotateHotkeyCode, OnRotate);
     }
 
     private bool OnTogglePreview(KeyCombination comb)
@@ -107,10 +112,24 @@ public class TentHologramRenderer : ModSystem
         return true;
     }
 
+    /// <summary>Горячая клавиша поворота: крутим палатку на 90°. Реально угол меняет сервер
+    /// (он авторитетно правит предмет и шлёт его обратно), мы лишь отправляем запрос.</summary>
+    private bool OnRotate(KeyCombination comb)
+    {
+        // Крутить можно только когда в руке развёрнутая палатка со схематиком.
+        ItemStack? stack = capi.World?.Player?.InventoryManager?.ActiveHotbarSlot?.Itemstack;
+        if (!IsDeployable(stack))
+        {
+            return false; // пропускаем нажатие дальше — крутить нечего
+        }
+        ModSys.SendRotateRequest(90);
+        return true;
+    }
+
     //  Запрос превью у сервера (с прицелом) + проверка места
     private void OnPreviewTick(float dt)
     {
-        if (!TryGetPreviewState(out string contents, out BlockPos basePos))
+        if (!TryGetPreviewState(out string contents, out BlockPos basePos, out int rotation))
         {
             if (sentEnable)
             {
@@ -124,13 +143,15 @@ public class TentHologramRenderer : ModSystem
             return;
         }
 
-        // Просим сервер построить/подвинуть превью при смене предмета или блока под прицелом.
+        // Просим сервер построить/подвинуть превью при смене предмета, блока под прицелом или угла.
+        // Угол меняет сервер и присылает обратно (MarkDirty) — поймав новое значение, перезапрашиваем.
         bool targetChanged = !SamePos(basePos, lastSentTarget);
-        if (!sentEnable || sentContents != contents || targetChanged)
+        if (!sentEnable || sentContents != contents || sentRotation != rotation || targetChanged)
         {
             ModSys.SendPreviewRequest(true, basePos.X, basePos.Y, basePos.Z, basePos.dimension);
             sentEnable = true;
             sentContents = contents;
+            sentRotation = rotation;
             lastSentTarget = basePos.Copy();
         }
 
@@ -265,10 +286,11 @@ public class TentHologramRenderer : ModSystem
     }
 
     //  Вспомогательное
-    private bool TryGetPreviewState(out string contents, out BlockPos basePos)
+    private bool TryGetPreviewState(out string contents, out BlockPos basePos, out int rotation)
     {
         contents = "";
         basePos = null!;
+        rotation = 0;
 
         if (!PreviewEnabled)
         {
@@ -296,6 +318,7 @@ public class TentHologramRenderer : ModSystem
             return false;
         }
 
+        rotation = stack.Attributes?.GetInt("packed-rotation", 0) ?? 0;
         basePos = sel.Position;
         return true;
     }

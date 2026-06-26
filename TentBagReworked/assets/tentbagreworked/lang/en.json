@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "Cannot unpack here, a clear area is required!",
   "tentbag:empty-build-error": "There are no solid blocks in the build area!",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Tent Grab Area Highlight On/Off",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Rotate tent by 90°",
   "tentbag:illegal-item-error": "Cannot pack {0} into the bag!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protection:</font> The tent can only be packed by clicking on the ground!",
   "tentbag:pack-hunger-error": "I'm too hungry to pack this right now!",
   "tentbag:pack-success": "Packed blocks: {0}, satiety consumed: {1}.",
   "tentbag:preview-toggled": "Tent preview: {0}",
+  "tentbag:rotation-info": "Tent rotated by {0} degrees.",
   "tentbag:solid-ground-error": "Cannot unpack here, solid ground is required!",
   "tentbag:status-off": "Off",
   "tentbag:status-on": "On",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Failed to remove waypoint.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Empty Tent Bag",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packed Tent Bag",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You need to pack something into it.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle building hologram preview</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - toggle captured area preview</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle building hologram preview</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "A completely empty tent bag. You need to pack something into it.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle tent hologram preview</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - toggle captured area preview</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - rotate tent</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "A packed tent bag, ready for your adventures!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - toggle tent hologram preview</font>\n"
 }

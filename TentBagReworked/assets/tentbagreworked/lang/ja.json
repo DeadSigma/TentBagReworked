@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "ここでは展開できません。十分な空きスペースが必要です！",
   "tentbag:empty-build-error": "建築エリア内に固体ブロックがありません！",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: テント取得範囲のハイライト オン/オフ",
+  "tentbag:hotkey-rotate": "TentBag Reworked: テントを90°回転",
   "tentbag:illegal-item-error": "{0} をバッグに収納できません！",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">保護:</font> テントは地面をクリックした場合のみ回収できます！",
   "tentbag:pack-hunger-error": "空腹すぎて今は収納できません！",
   "tentbag:pack-success": "収納したブロック数: {0}、消費した満腹度: {1}。",
   "tentbag:preview-toggled": "テントプレビュー: {0}",
+  "tentbag:rotation-info": "テントを{0}度回転しました。",
   "tentbag:solid-ground-error": "ここでは展開できません。固い地面が必要です！",
   "tentbag:status-off": "オフ",
   "tentbag:status-on": "オン",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "マーカーを削除できませんでした。",
   "tentbagreworked:item-tentbagreworked-*-empty": "空のテントバッグ",
   "tentbagreworked:item-tentbagreworked-*-packed": "梱包済みテントバッグ",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全に空のテントバッグです。何かを中に詰める必要があります。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 建築ホログラムのプレビューをオン/オフ</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 取得範囲のプレビューをオン/オフ</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "冒険の準備が整った、荷物の詰まったテントバッグです！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 建築ホログラムのプレビューをオン/オフ</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "完全に空のテントバッグです。何かを中に詰める必要があります。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - テントホログラムのプレビューをオン/オフ</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 取得範囲のプレビューをオン/オフ</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - テントを回転</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "冒険の準備が整った、荷物の詰まったテントバッグです！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - テントホログラムのプレビューをオン/オフ</font>\n"
 }

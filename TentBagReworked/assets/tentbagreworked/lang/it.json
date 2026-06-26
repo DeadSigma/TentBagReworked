@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "Impossibile aprire qui, è necessario uno spazio libero!",
   "tentbag:empty-build-error": "Non ci sono blocchi solidi nell'area di costruzione!",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Evidenziazione dell'area di cattura della tenda On/Off",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Ruota la tenda di 90°",
   "tentbag:illegal-item-error": "Impossibile riporre {0} nella borsa!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protezione:</font> La tenda può essere raccolta solo cliccando sul terreno!",
   "tentbag:pack-hunger-error": "Sono troppo affamato per impacchettarlo adesso!",
   "tentbag:pack-success": "Blocchi impacchettati: {0}, sazietà consumata: {1}.",
   "tentbag:preview-toggled": "Anteprima tenda: {0}",
+  "tentbag:rotation-info": "La tenda è stata ruotata di {0} gradi.",
   "tentbag:solid-ground-error": "Impossibile aprire qui, è necessaria una superficie solida!",
   "tentbag:status-off": "Disattivo",
   "tentbag:status-on": "Attivo",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Impossibile rimuovere il segnalino.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Borsa per tenda vuota",
   "tentbagreworked:item-tentbagreworked-*-packed": "Borsa per tenda impacchettata",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una borsa per tenda completamente vuota. Devi metterci dentro qualcosa.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della costruzione</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'area catturata</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una borsa per tenda già pronta, pronta per le tue avventure!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della costruzione</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Una borsa per tenda completamente vuota. Devi metterci dentro qualcosa.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della tenda</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'area catturata</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - ruota la tenda</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Una borsa per tenda già pronta, pronta per le tue avventure!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - attiva/disattiva l'anteprima dell'ologramma della tenda</font>\n"
 }

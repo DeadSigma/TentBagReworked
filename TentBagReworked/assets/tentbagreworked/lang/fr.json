@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "Impossible de déballer ici, un espace libre est requis !",
   "tentbag:empty-build-error": "Aucun bloc solide dans la zone de construction !",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked : Surlignage de la zone de capture de la tente Act/Désact",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Faire pivoter la tente de 90°",
   "tentbag:illegal-item-error": "Impossible de ranger {0} dans le sac !",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Protection :</font> La tente ne peut être rangée qu'en cliquant sur le sol !",
   "tentbag:pack-hunger-error": "Je suis trop affamé pour emballer cela maintenant !",
   "tentbag:pack-success": "Blocs emballés : {0}, satiété consommée : {1}.",
   "tentbag:preview-toggled": "Aperçu de la tente : {0}",
+  "tentbag:rotation-info": "La tente a été tournée de {0} degrés.",
   "tentbag:solid-ground-error": "Impossible de déballer ici, une surface solide est requise !",
   "tentbag:status-off": "Désactivé",
   "tentbag:status-on": "Activé",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Impossible de supprimer le marqueur.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Sac de tente vide",
   "tentbagreworked:item-tentbagreworked-*-packed": "Sac de tente emballé",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Un sac de tente complètement vide. Il faut y emballer quelque chose.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de construction</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de la zone capturée</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Un sac de tente emballé, prêt pour vos aventures !\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de construction</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Un sac de tente complètement vide. Il faut y emballer quelque chose.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de la tente</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de la zone capturée</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - faire pivoter la tente</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Un sac de tente emballé, prêt pour vos aventures !\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - activer/désactiver l’aperçu de l’hologramme de la tente</font>\n"
 }

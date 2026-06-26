@@ -126,6 +126,7 @@ public class PackableBehavior : CollectibleBehavior
             ItemStack packed = new(packedItem, slot.StackSize);
             packed.Attributes?.SetString("packed-contents", bs.ToJson());
             packed.Attributes?.SetInt("solid-block-count", solidBlockCount);
+            packed.Attributes?.SetInt("packed-rotation", 0); // свежесобранная палатка — без поворота
             if (Config.PutTentInInventoryOnUse)
             {
                 ItemStack sinkStack = slot.Itemstack!.Clone();
@@ -175,6 +176,16 @@ public class PackableBehavior : CollectibleBehavior
         {
             SendClientError(entity, Lang.UnpackError());
             return;
+        }
+
+        // Поворот палатки на 90/180/270: крутим упакованный схематик
+        // ДО центровки и вставки. TransformWhilePacked внутри пересчитывает SizeX/Y/Z (для 90/270
+        // меняет местами X<->Z) и перепаковывает блоки/декор/блок-сущности (через IRotatable),
+        // поэтому AdjustStartPos и Place ниже сами учитывают поворот, а превью совпадает с результатом.
+        int rotation = slot.Itemstack?.Attributes?.GetInt("packed-rotation", 0) ?? 0;
+        if (rotation != 0)
+        {
+            bs.TransformWhilePacked(entity.World, EnumOrigin.BottomCenter, rotation);
         }
 
         // paste the schematic into the world (requires bulk block accessor to prevent door/room issues)

@@ -97,6 +97,7 @@ namespace TentBagReworked
                 .RegisterMessageType<ConfigSyncPacket>()
                 .RegisterMessageType<RequestTentPreviewPacket>()
                 .RegisterMessageType<TentPreviewPacket>()
+                .RegisterMessageType<RotateTentPacket>()
                 .SetMessageHandler<ErrorPacket>(packet => {
                     if (!string.IsNullOrEmpty(packet.Error))
                     {
@@ -206,7 +207,9 @@ namespace TentBagReworked
                 .RegisterMessageType<ConfigSyncPacket>()
                 .RegisterMessageType<RequestTentPreviewPacket>()
                 .RegisterMessageType<TentPreviewPacket>()
-                .SetMessageHandler<RequestTentPreviewPacket>(OnRequestPreview);
+                .RegisterMessageType<RotateTentPacket>()
+                .SetMessageHandler<RequestTentPreviewPacket>(OnRequestPreview)
+                .SetMessageHandler<RotateTentPacket>(OnRotateTent);
 
             sapi.Event.PlayerJoin += OnPlayerJoin;
             sapi.Event.PlayerDisconnect += OnPlayerDisconnect;
@@ -263,6 +266,13 @@ namespace TentBagReworked
             _clientChannel?.SendPacket(new RequestTentPreviewPacket { Enable = enable, X = x, Y = y, Z = z, Dim = dim });
         }
 
+        /// <summary>Клиент: попросить сервер повернуть палатку в руке на delta градусов (кратно 90).
+        /// Угол храним в самом предмете (packed-rotation); сервер шлёт его обратно через MarkDirty.</summary>
+        public void SendRotateRequest(int delta = 90)
+        {
+            _clientChannel?.SendPacket(new RotateTentPacket { Delta = delta });
+        }
+
         /// <summary>Клиент: пришёл ответ сервера с id измерения и размерами схематика.</summary>
         private void OnPreviewFromServer(TentPreviewPacket packet)
         {
@@ -292,7 +302,9 @@ namespace TentBagReworked
                 return;
             }
 
-            if (!EnsureServerPreview(fromPlayer.PlayerUID, contents, out IMiniDimension? dim, out int dimId, out int sizeX, out int sizeZ) || dim == null)
+            int angle = stack!.Attributes!.GetInt("packed-rotation", 0);
+
+            if (!EnsureServerPreview(fromPlayer.PlayerUID, contents, angle, out IMiniDimension? dim, out int dimId, out int sizeX, out int sizeZ) || dim == null)
             {
                 return;
             }
@@ -309,11 +321,42 @@ namespace TentBagReworked
             _channel?.SendPacket(new TentPreviewPacket { DimId = dimId, PosX = corner.X, PosY = corner.Y, PosZ = corner.Z }, fromPlayer);
         }
 
+        /// <summary>Сервер: повернуть палатку в руке игрока. Угол (0/90/180/270) храним в самом
+        /// предмете (packed-rotation) — единственный источник правды, поэтому превью и реальная
+        /// распаковка берут одно и то же значение. MarkDirty синхронизирует угол обратно клиенту,
+        /// после чего следующий тик превью перезапросит мини-измерение с новым поворотом.</summary>
+        private void OnRotateTent(IServerPlayer fromPlayer, RotateTentPacket packet)
+        {
+            if (_sapi == null)
+            {
+                return;
+            }
+
+            ItemSlot? slot = fromPlayer.InventoryManager?.ActiveHotbarSlot;
+            ItemStack? stack = slot?.Itemstack;
+            string? contents = stack?.Attributes?.GetString("packed-contents")
+                               ?? stack?.Attributes?.GetString("tent-contents");
+            if (slot == null || stack?.Attributes == null || string.IsNullOrEmpty(contents))
+            {
+                return; // в руке нет развёрнутого схематика — крутить нечего
+            }
+
+            int angle = GameMath.Mod(stack.Attributes.GetInt("packed-rotation", 0) + packet.Delta, 360);
+            stack.Attributes.SetInt("packed-rotation", angle);
+            slot.MarkDirty(); // синхронизируем угол обратно клиенту (для unpack и перезапроса превью)
+
+            // Сбрасываем кэш превью игрока, чтобы следующий запрос пересобрал мини-измерение
+            // с новым углом (токен кэша и так включает угол — это подстраховка).
+            _previewContents[fromPlayer.PlayerUID] = "";
+
+            SendClientChatMessage(fromPlayer, TentBagReworked.Config.Lang.RotationInfo(angle));
+        }
+
         /// <summary>
         /// Создаёт (один раз на игрока) мини-измерение и вставляет в него схематик.
         /// Повторная вставка только при смене содержимого. Чанки движок стримит клиенту сам.
         /// </summary>
-        private bool EnsureServerPreview(string uid, string contents, out IMiniDimension? dim, out int dimId, out int sizeX, out int sizeZ)
+        private bool EnsureServerPreview(string uid, string contents, int angle, out IMiniDimension? dim, out int dimId, out int sizeX, out int sizeZ)
         {
             dim = null;
             dimId = -1;
@@ -346,11 +389,22 @@ namespace TentBagReworked
                 return false;
             }
 
+            // Поворот — ровно как ванильный WorldEdit: на упакованном схематике, ДО вставки.
+            // TransformWhilePacked внутри перепаковывает блоки/декор/блок-сущности и пересчитывает
+            // SizeX/Y/Z (для 90/270 меняет местами X<->Z), поэтому центровка corner остаётся верной.
+            if (angle != 0)
+            {
+                schematic.TransformWhilePacked(_sapi.World, EnumOrigin.BottomCenter, angle);
+            }
+
             sizeX = schematic.SizeX;
             sizeZ = schematic.SizeZ;
 
-            // Перевставляем блоки только если содержимое изменилось.
-            if (_previewContents.GetValueOrDefault(uid) != contents)
+            // Токен кэша включает угол: тот же contents с новым поворотом обязан вызвать переврезку.
+            string token = contents + "@" + angle;
+
+            // Перевставляем блоки только если изменилось содержимое ИЛИ угол.
+            if (_previewContents.GetValueOrDefault(uid) != token)
             {
                 dim.ClearChunks();
 
@@ -364,8 +418,8 @@ namespace TentBagReworked
                 schematic.PasteToMiniDimension(_sapi, _sapi.World.BlockAccessor, dim, pasteOrigin, true);
                 dim.UnloadUnusedServerChunks();
 
-                _previewContents[uid] = contents;
-                Logger.VerboseDebug("[TentBagReworked] preview pasted for " + uid + ": " + sizeX + "x" + schematic.SizeY + "x" + sizeZ);
+                _previewContents[uid] = token;
+                Logger.VerboseDebug("[TentBagReworked] preview pasted for " + uid + ": " + sizeX + "x" + schematic.SizeY + "x" + sizeZ + " rot=" + angle);
             }
 
             return true;
@@ -523,6 +577,12 @@ namespace TentBagReworked
             public int PosX;
             public int PosY;
             public int PosZ;
+        }
+
+        [ProtoContract(ImplicitFields = ImplicitFields.AllFields)]
+        private class RotateTentPacket
+        {
+            public int Delta = 90; // +90 по часовой за нажатие; можно слать -90 для обратного поворота
         }
 
         private void EnsureTentSchematicExists(ICoreServerAPI sapi)

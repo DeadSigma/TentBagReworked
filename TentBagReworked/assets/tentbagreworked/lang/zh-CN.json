@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "无法在此展开，需要足够的空闲空间！",
   "tentbag:empty-build-error": "建筑区域内没有坚固方块！",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked：帐篷捕获区域高亮 开/关",
+  "tentbag:hotkey-rotate": "TentBag Reworked: 将帐篷旋转 90°",
   "tentbag:illegal-item-error": "无法将 {0} 打包进袋子！",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">保护：</font>只能点击地面来收起帐篷！",
   "tentbag:pack-hunger-error": "我太饿了，现在无法打包它！",
   "tentbag:pack-success": "已打包方块：{0}，消耗饱食度：{1}。",
   "tentbag:preview-toggled": "帐篷预览：{0}",
+  "tentbag:rotation-info": "帐篷已旋转 {0} 度。",
   "tentbag:solid-ground-error": "无法在此展开，需要坚实地面！",
   "tentbag:status-off": "关闭",
   "tentbag:status-on": "开启",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "无法删除标记。",
   "tentbagreworked:item-tentbagreworked-*-empty": "空帐篷袋",
   "tentbagreworked:item-tentbagreworked-*-packed": "已打包帐篷袋",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "一个完全空的帐篷袋。你需要往里面装点东西。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭建筑全息投影预览</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 开启/关闭捕获区域预览</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "一个已经打包好的帐篷袋，随时准备陪你踏上冒险之旅！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭建筑全息投影预览</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "一个完全空的帐篷袋。你需要往里面装点东西。\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭帐篷全息投影预览</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - 开启/关闭捕获区域预览</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - 旋转帐篷</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "一个已经打包好的帐篷袋，随时准备陪你踏上冒险之旅！\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - 开启/关闭帐篷全息投影预览</font>\n"
 }

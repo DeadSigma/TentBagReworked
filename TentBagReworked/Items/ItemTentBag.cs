@@ -10,6 +10,7 @@ public class ItemTentBag : Item
 
     private const string HotkeyToggleHologram = "tentbagpreview";
     private const string HotkeyGrabArea = "tentbagreworked-showgraparea";
+    private const string HotkeyRotate = "tentbagrotate";
 
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
@@ -30,6 +31,17 @@ public class ItemTentBag : Item
         }
         dsc.Append(itemDescText);
 
+        // Текущий угол поворота — показываем только когда мешок собран и реально повёрнут.
+        int rot = inSlot.Itemstack?.Attributes?.GetInt("packed-rotation", 0) ?? 0;
+        if (rot != 0)
+        {
+            if (dsc.Length > 0)
+            {
+                dsc.Append('\n');
+            }
+            dsc.Append(Lang.GetMatchingIfExists("tentbag:rotation-info", rot) ?? $"Rotation: {rot}°");
+        }
+
         if (Code != null && Code.Domain != "game")
         {
             dsc.AppendLine(Lang.Get("Mod: {0}", (api.ModLoader.GetMod(Code.Domain)?.Info.Name ?? Code.Domain)));
@@ -49,12 +61,13 @@ public class ItemTentBag : Item
 
         string hologramKey = GetHotkeyDisplay(HotkeyToggleHologram, "B");
         string grabAreaKey = GetHotkeyDisplay(HotkeyGrabArea, "P");
+        string rotateKey = GetHotkeyDisplay(HotkeyRotate, "R");
 
         // Тот же ключ, что использует движок (поддерживает '*' в lang-файле).
         // Лишние аргументы игнорируются, если в строке нет плейсхолдеров,
         // поэтому метод безопасен и для описаний других состояний мешка.
         string key = $"{Code.Domain}:itemdesc-{Code.Path}";
-        return Lang.GetMatchingIfExists(key, hologramKey, grabAreaKey) ?? "";
+        return Lang.GetMatchingIfExists(key, hologramKey, grabAreaKey, rotateKey) ?? "";
     }
 
     /// <summary>

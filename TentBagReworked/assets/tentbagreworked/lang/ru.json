@@ -3,12 +3,14 @@
   "tentbag:clear-area-error": "Нельзя распаковать здесь, требуется свободное место!",
   "tentbag:empty-build-error": "В области постройки нет твёрдых блоков!",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Подсветка области захвата палатки Вкл/Выкл",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Повернуть палатку на 90°",
   "tentbag:hotkey-toggle-preview": "TentBag Reworked: Предпросмотр палатки Вкл/Выкл",
   "tentbag:illegal-item-error": "Нельзя упаковать {0} в сумку!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Защита:</font> Собрать палатку можно лишь нажав на пол!",
   "tentbag:pack-hunger-error": "Я слишком голоден, чтобы сейчас упаковать это!",
   "tentbag:pack-success": "Упаковано блоков: {0}, потрачено сытости: {1}.",
   "tentbag:preview-toggled": "Предпросмотр палатки: {0}",
+  "tentbag:rotation-info": "Палатка повёрнута на {0} градусов.",
   "tentbag:solid-ground-error": "Нельзя распаковать здесь, нужна твёрдая поверхность!",
   "tentbag:status-off": "Выкл",
   "tentbag:status-on": "Вкл",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Не удалось удалить метку.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Пустая сумка для палатки",
   "tentbagreworked:item-tentbagreworked-*-packed": "Упакованная сумка для палатки",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Совершенно пустая сумка для палатки. Нужно что-нибудь в неё упаковать.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр голограммы постройки</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр захватываемой области</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Упакованная сумка для палатки, готовая к вашим приключениям!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр голограммы постройки</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "Совершенно пустая сумка для палатки. Нужно что-нибудь в неё упаковать.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр голограммы палатки</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр захватываемой области</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - вращение палатки</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "Упакованная сумка для палатки, готовая к вашим приключениям!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - вкл/выкл предпросмотр голограммы палатки</font>\n"
 }

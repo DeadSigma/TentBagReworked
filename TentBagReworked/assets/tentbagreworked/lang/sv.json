@@ -4,11 +4,13 @@
   "tentbag:clear-area-error": "Kan inte packa upp här, ett fritt område krävs!",
   "tentbag:empty-build-error": "Det finns inga solida block i byggområdet!",
   "tentbag:hotkey-highlight-grab-area": "TentBag Reworked: Markering av tältets fångstområde På/Av",
+  "tentbag:hotkey-rotate": "TentBag Reworked: Rotera tältet 90°",
   "tentbag:illegal-item-error": "Kan inte packa {0} i väskan!",
   "tentbag:pack-floor-only": "<font color=\"#ff5555\">Skydd:</font> Tältet kan endast packas ihop genom att klicka på marken!",
   "tentbag:pack-hunger-error": "Jag är för hungrig för att packa ner detta just nu!",
   "tentbag:pack-success": "Packade block: {0}, mättnad förbrukad: {1}.",
   "tentbag:preview-toggled": "Tältförhandsvisning: {0}",
+  "tentbag:rotation-info": "Tältet roterades {0} grader.",
   "tentbag:solid-ground-error": "Kan inte packa upp här, fast mark krävs!",
   "tentbag:status-off": "Av",
   "tentbag:status-on": "På",
@@ -19,6 +21,6 @@
   "tentbag:wp-remove-error": "Det gick inte att ta bort markeringen.",
   "tentbagreworked:item-tentbagreworked-*-empty": "Tom tältväska",
   "tentbagreworked:item-tentbagreworked-*-packed": "Packad tältväska",
-  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du behöver packa något i den.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av byggnadshologrammet</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av det upptagna området</font>\n",
-  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "En packad tältväska, redo för dina äventyr!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av byggnadshologrammet</font>\n"
+  "tentbagreworked:itemdesc-tentbagreworked-*-empty": "En helt tom tältväska. Du behöver packa något i den.\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av tälthologrammet</font>\n<font color=\"#ff5555\">{1}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av det upptagna området</font>\n<font color=\"#ff5555\">{2}</font><font color=\"#55ff55\"> - rotera tältet</font>\n",
+  "tentbagreworked:itemdesc-tentbagreworked-*-packed": "En packad tältväska, redo för dina äventyr!\n\n<font color=\"#ff5555\">{0}</font><font color=\"#55ff55\"> - slå på/av förhandsvisning av tälthologrammet</font>\n"
 }
