@@ -22,7 +22,9 @@ public class PackableBehavior : CollectibleBehavior
 {
     private static readonly MethodInfo? ResendWaypoints = typeof(WaypointMapLayer).GetMethod("ResendWaypoints", BindingFlags.NonPublic | BindingFlags.Instance);
     private static readonly MethodInfo? RebuildMapComponents = typeof(WaypointMapLayer).GetMethod("RebuildMapComponents", BindingFlags.NonPublic | BindingFlags.Instance);
-
+    private static readonly MethodInfo? DoorSetupBoxes =
+    typeof(BEBehaviorDoor).GetMethod("SetupRotationsAndColSelBoxes",
+        BindingFlags.Instance | BindingFlags.NonPublic);
     private TentBagReworkedModSystem _modSystem = null!;
 
     private TentBagReworkedConfig Config => _modSystem.Config;
@@ -197,6 +199,18 @@ public class PackableBehavior : CollectibleBehavior
 
         // Do this after bulk accessor commit
         bs.PlaceEntitiesAndBlockEntities(blockAccessor, entity.World, adjustedStart, bs.BlockCodes, bs.ItemCodes);
+
+        IBlockAccessor worldBa = entity.World.BlockAccessor;
+        BlockPos nPos = new(adjustedStart.dimension);
+        for (int dx = 0; dx < bs.SizeX; dx++)
+            for (int dy = 0; dy < bs.SizeY; dy++)
+                for (int dz = 0; dz < bs.SizeZ; dz++)
+                {
+                    nPos.Set(adjustedStart.X + dx, adjustedStart.Y + dy, adjustedStart.Z + dz);
+                    // серверные боксы двери построились при RotateYRad=0 (до FromTreeAttributes);
+                    if (worldBa.GetBlockEntity(nPos)?.GetBehavior<BEBehaviorDoor>() is { } doorBeh)
+                        DoorSetupBoxes?.Invoke(doorBeh, new object[] { false });
+                }
 
         // Багфикс освещения: источники света, расставленные
         {
@@ -419,11 +433,12 @@ public class PackableBehavior : CollectibleBehavior
     private static void ClearArea(IBlockAccessor blockAccessor, BlockPos start, BlockPos end)
     {
         blockAccessor.WalkBlocks(start, end, (block, x, y, z) => {
-            if (block.BlockId == 0)
-            {
-                return;
-            }
-            blockAccessor.SetBlock(0, new BlockPos(x, y, z, 0));
+            BlockPos pos = new(x, y, z, 0);
+            // WalkBlocks/SetBlock(0) трогают только слой 1; лёд/вода в слое 2 иначе остаются -> дубль
+            if (blockAccessor.GetBlock(pos, BlockLayersAccess.Fluid).BlockId != 0)
+                blockAccessor.SetBlock(0, pos, BlockLayersAccess.Fluid);
+            if (block.BlockId != 0)
+                blockAccessor.SetBlock(0, pos);
         });
         blockAccessor.Commit();
     }
