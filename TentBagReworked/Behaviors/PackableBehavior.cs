@@ -67,6 +67,14 @@ public class PackableBehavior : CollectibleBehavior
             return;
         }
 
+        // проверка таймера - ждем 3 сек
+        long lastUse = slot.Itemstack?.Attributes?.GetLong("last-use", 0) ?? 0;
+        if (entity.World.ElapsedMilliseconds - lastUse < 3000)
+        {
+            handHandling = EnumHandHandling.PreventDefaultAction;
+            return;
+        }
+
         handHandling = EnumHandHandling.PreventDefaultAction;
 
         if (entity.Api.Side != EnumAppSide.Server)
@@ -129,6 +137,8 @@ public class PackableBehavior : CollectibleBehavior
             packed.Attributes?.SetString("packed-contents", bs.ToJson());
             packed.Attributes?.SetInt("solid-block-count", solidBlockCount);
             packed.Attributes?.SetInt("packed-rotation", 0); // свежесобранная палатка — без поворота
+            packed.Attributes?.SetLong("last-use", entity.World.ElapsedMilliseconds);
+
             if (Config.PutTentInInventoryOnUse)
             {
                 ItemStack sinkStack = slot.Itemstack!.Clone();
@@ -274,6 +284,7 @@ public class PackableBehavior : CollectibleBehavior
         if (emptyItem != null)
         {
             ItemStack empty = new(emptyItem, slot.StackSize);
+            empty.Attributes?.SetLong("last-use", entity.World.ElapsedMilliseconds);
             if (Config.PutTentInInventoryOnUse)
             {
                 ItemStack sinkStack = slot.Itemstack!.Clone();
