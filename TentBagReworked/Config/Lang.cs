@@ -1,24 +1,67 @@
+using Vintagestory.API.Common;
+using Vintagestory.API.Server;
+using VsLang = Vintagestory.API.Config.Lang;
+
 namespace TentBagReworked.Config;
+
+public readonly struct LangMsg
+{
+    public string Key { get; }
+    public object[] Args { get; }
+
+    public LangMsg(string key, object[] args)
+    {
+        Key = key;
+        Args = args ?? [];
+    }
+
+    /// перевод на язык конкретного игрока - серверная сторона
+    public string For(IPlayer? player)
+    {
+        string lang = (player as IServerPlayer)?.LanguageCode ?? VsLang.CurrentLocale;
+
+        // вложенные ключи (например статус вкл/выкл) переводим тем же языком
+        object[] args = Args;
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] is LangMsg nested)
+            {
+                if (ReferenceEquals(args, Args))
+                {
+                    args = (object[])Args.Clone();
+                }
+                args[i] = nested.For(player);
+            }
+        }
+
+        return VsLang.GetL(lang, Key, args);
+    }
+
+    /// перевод на язык текущего процесса - клиент и логи
+    public override string ToString() => VsLang.Get(Key, Args);
+
+    public static implicit operator string(LangMsg msg) => msg.ToString();
+}
 
 public abstract class Lang
 {
-    public static string UnpackError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:unpack-error");
-    public static string IllegalItemError(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:illegal-item-error", args);
-    public static string SolidGroundError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:solid-ground-error");
-    public static string ClearAreaError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:clear-area-error");
-    public static string UnpackHungerError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:unpack-hunger-error");
-    public static string PackHungerError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:pack-hunger-error");
-    public static string EmptyBuildError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:empty-build-error");
-    public static string WpRemoveError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:wp-remove-error");
-    public static string PackFloorOnlyError(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:pack-floor-only");
-    public static string PackSuccess(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:pack-success", args);
-    public static string UnpackSuccess(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:unpack-success", args);
-    public static string WaypointTitle(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:waypoint-title", args);
-    public static string StatusOn(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:status-on");
-    public static string StatusOff(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:status-off");
-    public static string PreviewToggled(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:preview-toggled", args);
-    public static string HotkeyTogglePreview(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-toggle-preview");
-    public static string HotkeyHighlightGrabArea(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-highlight-grab-area");
-    public static string HotkeyRotate(params object[] _) => Vintagestory.API.Config.Lang.Get("tentbag:hotkey-rotate");
-    public static string RotationInfo(params object[] args) => Vintagestory.API.Config.Lang.Get("tentbag:rotation-info", args);
+    public static LangMsg UnpackError(params object[] _) => new("tentbag:unpack-error", []);
+    public static LangMsg IllegalItemError(params object[] args) => new("tentbag:illegal-item-error", args);
+    public static LangMsg SolidGroundError(params object[] _) => new("tentbag:solid-ground-error", []);
+    public static LangMsg ClearAreaError(params object[] _) => new("tentbag:clear-area-error", []);
+    public static LangMsg UnpackHungerError(params object[] _) => new("tentbag:unpack-hunger-error", []);
+    public static LangMsg PackHungerError(params object[] _) => new("tentbag:pack-hunger-error", []);
+    public static LangMsg EmptyBuildError(params object[] _) => new("tentbag:empty-build-error", []);
+    public static LangMsg WpRemoveError(params object[] _) => new("tentbag:wp-remove-error", []);
+    public static LangMsg PackFloorOnlyError(params object[] _) => new("tentbag:pack-floor-only", []);
+    public static LangMsg PackSuccess(params object[] args) => new("tentbag:pack-success", args);
+    public static LangMsg UnpackSuccess(params object[] args) => new("tentbag:unpack-success", args);
+    public static LangMsg WaypointTitle(params object[] args) => new("tentbag:waypoint-title", args);
+    public static LangMsg StatusOn(params object[] _) => new("tentbag:status-on", []);
+    public static LangMsg StatusOff(params object[] _) => new("tentbag:status-off", []);
+    public static LangMsg PreviewToggled(params object[] args) => new("tentbag:preview-toggled", args);
+    public static LangMsg HotkeyTogglePreview(params object[] _) => new("tentbag:hotkey-toggle-preview", []);
+    public static LangMsg HotkeyHighlightGrabArea(params object[] _) => new("tentbag:hotkey-highlight-grab-area", []);
+    public static LangMsg HotkeyRotate(params object[] _) => new("tentbag:hotkey-rotate", []);
+    public static LangMsg RotationInfo(params object[] args) => new("tentbag:rotation-info", args);
 }

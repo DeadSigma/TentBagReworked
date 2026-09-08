@@ -36,10 +36,17 @@ public class PackableBehavior : CollectibleBehavior
     private bool IsPlantOrRock(Block? block) => Config.ReplacePlantsAndRocks && block?.Replaceable is >= 5500 and <= 6500;
     private bool IsReplaceable(Block? block) => IsAirOrNull(block) || IsPlantOrRock(block);
 
-    private void SendClientError(EntityPlayer entity, string error) => _modSystem.SendClientError(entity.Player, error);
+    private void SendClientError(EntityPlayer entity, LangMsg error) => _modSystem.SendClientError(entity.Player, error);
 
-    // Вызов статического метода через имя класса
-    private static void SendClientChatMessage(EntityPlayer entity, string message) => TentBagReworkedModSystem.SendClientChatMessage(entity.Player, message);
+    private static void SendClientChatMessage(EntityPlayer entity, LangMsg message) => TentBagReworkedModSystem.SendClientChatMessage(entity.Player, message);
+
+    private void ChatNotification(EntityPlayer entity, LangMsg message)
+    {
+        if (Config.ShowChatNotification)
+        {
+            SendClientChatMessage(entity, message);
+        }
+    }
 
     private readonly AssetLocation? _emptyBag;
     private readonly AssetLocation? _packedBag;
@@ -67,17 +74,26 @@ public class PackableBehavior : CollectibleBehavior
             return;
         }
 
-        // проверка таймера - ждем 3 сек
-        long lastUse = slot.Itemstack?.Attributes?.GetLong("last-use", 0) ?? 0;
-        if (entity.World.ElapsedMilliseconds - lastUse < 3000)
-        {
-            handHandling = EnumHandHandling.PreventDefaultAction;
-            return;
-        }
-
         handHandling = EnumHandHandling.PreventDefaultAction;
 
         if (entity.Api.Side != EnumAppSide.Server)
+        {
+            return;
+        }
+
+        // ElapsedMilliseconds считается от старта сервера и обнуляется при рестарте,
+        // поэтому метка из прошлой сессии оказывается "в будущем" и мешок залипает навсегда
+        long now = entity.World.ElapsedMilliseconds;
+        long lastUse = slot.Itemstack?.Attributes?.GetLong("last-use", 0) ?? 0;
+        if (lastUse > now)
+        {
+            lastUse = 0;
+            slot.Itemstack?.Attributes?.SetLong("last-use", 0);
+            slot.MarkDirty();
+        }
+
+        // антидребезг - 3 сек между использованиями
+        if (now - lastUse < 3000)
         {
             return;
         }
@@ -87,8 +103,7 @@ public class PackableBehavior : CollectibleBehavior
 
         if (contents == null)
         {
-            // Защита: упаковка (сбор) пустым мешком разрешена только по ВЕРХНЕЙ грани блока — по полу.
-            // Нажатие на стену (боковая грань) или потолок (нижняя грань) сбор не запускает.
+            // сбор пустым мешком разрешён только по верхней грани - по полу
             if (blockSel.Face != BlockFacing.UP)
             {
                 SendClientChatMessage(entity, Lang.PackFloorOnlyError());
@@ -349,14 +364,6 @@ public class PackableBehavior : CollectibleBehavior
         }
     }
 
-    private void ChatNotification(EntityPlayer entity, string message)
-    {
-        if (Config.ShowChatNotification)
-        {
-            SendClientChatMessage(entity, message);
-        }
-    }
-
     private void CreateWaypoint(EntityPlayer player, BlockSelection blockSel)
     {
         if (player.Api is ICoreServerAPI)
@@ -367,7 +374,7 @@ public class PackableBehavior : CollectibleBehavior
                 Waypoint wp = new()
                 {
                     Position = blockSel.Position.ToVec3d(),
-                    Title = Lang.WaypointTitle(player.EntityId),
+                    Title = Lang.WaypointTitle(player.EntityId).For(player.Player),
                     Pinned = false,
                     Icon = Config.WaypointIcon,
                     Color = ColorTranslator.FromHtml(Config.WaypointColor).ToArgb(),
@@ -393,7 +400,7 @@ public class PackableBehavior : CollectibleBehavior
                 {
                     foreach (Waypoint waypoint in waypoints.ToList().Where(w => w.OwningPlayerUid == player.PlayerUID))
                     {
-                        if (waypoint.Title == Lang.WaypointTitle(player.EntityId))
+                        if (waypoint.Title == Lang.WaypointTitle(player.EntityId).For(player.Player))
                         {
                             if (player == null) // Этот блок условия всегда ложен, но оставил как в оригинале
                             {

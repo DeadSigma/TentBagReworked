@@ -59,15 +59,15 @@ namespace TentBagReworked
         private const string GrabAreaShownSetting = "tentbagreworked-graparea-shown";
         private bool _grabAreaShown;
         private BlockPos? _lastGrabAreaPos;
-        // Запоминаем и грань тоже: цвет зависит от грани (верх -> можно собирать, иначе -> нельзя),
-        // а грань может смениться без смены блока (например, провести взглядом по одному блоку).
         private BlockFacing? _lastGrabAreaFace;
+        private readonly Dictionary<string, long> _lastRotateMs = [];
 
         // Серверная часть предпросмотра (мини-измерения на игрока)
         private ICoreServerAPI? _sapi;
         private readonly Dictionary<string, IMiniDimension> _previewDims = [];
         private readonly Dictionary<string, int> _previewDimIds = [];
         private readonly Dictionary<string, string> _previewContents = [];
+        private readonly Dictionary<string, Vec3i> _previewSizes = [];
 
         public TentBagReworkedModSystem()
         {
@@ -338,23 +338,30 @@ namespace TentBagReworked
                                ?? stack?.Attributes?.GetString("tent-contents");
             if (slot == null || stack?.Attributes == null || string.IsNullOrEmpty(contents))
             {
-                return; // в руке нет развёрнутого схематика — крутить нечего
+                return; // в руке нет развёрнутого схематика - крутить нечего
             }
+
+            // порог чуть ниже клиентского, чтобы нормальный клиент никогда не упирался
+            long now = _sapi.World.ElapsedMilliseconds;
+            if (_lastRotateMs.TryGetValue(fromPlayer.PlayerUID, out long last) && now - last < 250)
+            {
+                return;
+            }
+            _lastRotateMs[fromPlayer.PlayerUID] = now;
 
             int angle = GameMath.Mod(stack.Attributes.GetInt("packed-rotation", 0) + packet.Delta, 360);
             stack.Attributes.SetInt("packed-rotation", angle);
             slot.MarkDirty(); // синхронизируем угол обратно клиенту (для unpack и перезапроса превью)
 
             // Сбрасываем кэш превью игрока, чтобы следующий запрос пересобрал мини-измерение
-            // с новым углом (токен кэша и так включает угол — это подстраховка).
+            // с новым углом (токен кэша и так включает угол - это подстраховка)
             _previewContents[fromPlayer.PlayerUID] = "";
 
             SendClientChatMessage(fromPlayer, TentBagReworked.Config.Lang.RotationInfo(angle));
         }
-
         /// <summary>
         /// Создаёт (один раз на игрока) мини-измерение и вставляет в него схематик.
-        /// Повторная вставка только при смене содержимого. Чанки движок стримит клиенту сам.
+        /// Повторная вставка только при смене содержимого или угла. Чанки движок стримит клиенту сам.
         /// </summary>
         private bool EnsureServerPreview(string uid, string contents, int angle, out IMiniDimension? dim, out int dimId, out int sizeX, out int sizeZ)
         {
@@ -376,6 +383,7 @@ namespace TentBagReworked
                 _previewDims[uid] = dim;
                 _previewDimIds[uid] = newId;
                 _previewContents[uid] = "";
+                _previewSizes.Remove(uid);
                 Logger.VerboseDebug("[TentBagReworked] preview dim created for " + uid + ": id=" + newId);
             }
 
@@ -389,9 +397,9 @@ namespace TentBagReworked
                 return false;
             }
 
-            // Поворот — ровно как ванильный WorldEdit: на упакованном схематике, ДО вставки.
+            // Поворот - ровно как ванильный WorldEdit: на упакованном схематике, ДО вставки.
             // TransformWhilePacked внутри перепаковывает блоки/декор/блок-сущности и пересчитывает
-            // SizeX/Y/Z (для 90/270 меняет местами X<->Z), поэтому центровка corner остаётся верной.
+            // SizeX/Y/Z (для 90/270 меняет местами X<->Z), поэтому центровка corner остаётся верной
             if (angle != 0)
             {
                 schematic.TransformWhilePacked(_sapi.World, EnumOrigin.BottomCenter, angle);
@@ -400,21 +408,16 @@ namespace TentBagReworked
             sizeX = schematic.SizeX;
             sizeZ = schematic.SizeZ;
 
-            // Токен кэша включает угол: тот же contents с новым поворотом обязан вызвать переврезку.
+            // Токен кэша включает угол: тот же contents с новым поворотом обязан вызвать переврезку
             string token = contents + "@" + angle;
 
-            // Перевставляем блоки только если изменилось содержимое ИЛИ угол.
             if (_previewContents.GetValueOrDefault(uid) != token)
             {
                 dim.ClearChunks();
 
-                // Локальный нулевой угол внутри измерения (как в WorldEditWorkspace.CreateDimensionFromSchematic):
-                // (0,0,0) в координатном пространстве мини-измерений (dimension index 1) + сдвиг суб-измерения.
                 BlockPos pasteOrigin = new(0, 0, 0, 1);
                 dim.AdjustPosForSubDimension(pasteOrigin);
 
-                // Init + Place + PlaceDecors (внутри PasteToMiniDimension). Place у не-revertable
-                // аксессора сам создаёт блок-сущности (chisel/ящики), поэтому они рисуются корректно.
                 schematic.PasteToMiniDimension(_sapi, _sapi.World.BlockAccessor, dim, pasteOrigin, true);
                 dim.UnloadUnusedServerChunks();
 
@@ -423,6 +426,44 @@ namespace TentBagReworked
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Стирает прошлую вставку записью воздуха. ClearChunks() чистит чанки только на сервере,
+        /// клиенту уходят лишь реально записанные изменения - без этого старый поворот
+        /// остаётся висеть в мини-измерении клиента и голограммы копятся
+        /// </summary>
+        private void ClearPreviewVolume(string uid, IMiniDimension dim, BlockPos pasteOrigin)
+        {
+            if (!_previewSizes.TryGetValue(uid, out Vec3i? size) || size == null)
+            {
+                return;
+            }
+
+            BlockPos pos = new(pasteOrigin.dimension);
+            for (int dx = 0; dx < size.X; dx++)
+            {
+                for (int dy = 0; dy < size.Y; dy++)
+                {
+                    for (int dz = 0; dz < size.Z; dz++)
+                    {
+                        pos.Set(pasteOrigin.X + dx, pasteOrigin.Y + dy, pasteOrigin.Z + dz);
+
+                        if (dim.GetSubDecors(pos) != null)
+                        {
+                            dim.BreakDecor(pos);
+                        }
+                        if (dim.GetBlock(pos, BlockLayersAccess.Fluid).BlockId != 0)
+                        {
+                            dim.SetBlock(0, pos, BlockLayersAccess.Fluid);
+                        }
+                        if (dim.GetBlock(pos).BlockId != 0)
+                        {
+                            dim.SetBlock(0, pos);
+                        }
+                    }
+                }
+            }
         }
 
         private bool IsPlantOrRockServer(Block? b) => Config.ReplacePlantsAndRocks && b?.Replaceable is >= 5500 and <= 6500;
@@ -457,28 +498,29 @@ namespace TentBagReworked
                     dim.ClearChunks();
                     dim.UnloadUnusedServerChunks();
                 }
-                catch { /* выход игрока — не критично */ }
+                catch { /* выход игрока - не критично */ }
             }
             _previewDims.Remove(uid);
             _previewDimIds.Remove(uid);
             _previewContents.Remove(uid);
+            _previewSizes.Remove(uid);
+            _lastRotateMs.Remove(uid);
         }
 
 
-        public void SendClientError(IPlayer? player, string error)
+        public void SendClientError(IPlayer? player, LangMsg error)
         {
             if (player is IServerPlayer serverPlayer)
             {
-                _channel?.SendPacket(new ErrorPacket { Error = error }, serverPlayer);
+                _channel?.SendPacket(new ErrorPacket { Error = error.For(serverPlayer) }, serverPlayer);
             }
         }
 
-        // IDE1822: Метод сделан статическим, так как не использует локальные поля класса
-        public static void SendClientChatMessage(IPlayer? player, string message)
+        public static void SendClientChatMessage(IPlayer? player, LangMsg message)
         {
             if (player is IServerPlayer serverPlayer)
             {
-                serverPlayer.SendMessage(GlobalConstants.GeneralChatGroup, message, EnumChatType.Notification);
+                serverPlayer.SendMessage(GlobalConstants.GeneralChatGroup, message.For(serverPlayer), EnumChatType.Notification);
             }
         }
 
@@ -534,13 +576,15 @@ namespace TentBagReworked
                         dim.ClearChunks();
                         dim.UnloadUnusedServerChunks();
                     }
-                    catch { /* выгрузка — не критично */ }
+                    catch { /* выгрузка - не критично */ }
                 }
             }
 
             _previewDims.Clear();
             _previewDimIds.Clear();
             _previewContents.Clear();
+            _previewSizes.Clear();
+            _lastRotateMs.Clear();
 
             SyncedConfig = null;
             _channel = null;

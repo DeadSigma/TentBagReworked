@@ -42,7 +42,7 @@ public class TentHologramRenderer : ModSystem
 
     // Упрощенная инициализация коллекции
     private static readonly List<BlockPos> EmptyBlocks = [];
-
+    private long lastRotateMs;
     private ICoreClientAPI capi = null!;
 
     /// <summary>Переключается горячей клавишей. Когда false — ничего не рисуется.</summary>
@@ -116,12 +116,20 @@ public class TentHologramRenderer : ModSystem
     /// (он авторитетно правит предмет и шлёт его обратно), мы лишь отправляем запрос.</summary>
     private bool OnRotate(KeyCombination comb)
     {
-        // Крутить можно только когда в руке развёрнутая палатка со схематиком.
+        // Крутить можно только когда в руке развёрнутая палатка со схематиком
         ItemStack? stack = capi.World?.Player?.InventoryManager?.ActiveHotbarSlot?.Itemstack;
         if (!IsDeployable(stack))
         {
-            return false; // пропускаем нажатие дальше — крутить нечего
+            return false; // пропускаем нажатие дальше - крутить нечего
         }
+
+        long now = Environment.TickCount64;
+        if (now - lastRotateMs < 300)
+        {
+            return true; // нажатие съедаем, запрос не шлём
+        }
+        lastRotateMs = now;
+
         ModSys.SendRotateRequest(90);
         return true;
     }
